@@ -48,6 +48,7 @@ typedef struct	s_game
 {
 	char		**map;
 	char		**data_map;
+	char		*filename;
 	int			fd;
 	t_player	player;
 	t_colors	colors;
@@ -56,5 +57,9 @@ typedef struct	s_game
 	t_texture	textures;
 	void		*mlx;
 }				t_game;
+
+/************************************************************/
+/*                         Functions                        */
+/************************************************************/
 
 #endif
