@@ -17,6 +17,7 @@ int			ctn_isalpha(int c);
 int			ctn_isupper(int c);
 int			ctn_islower(int c);
 int			ctn_isdigit(int c);
+int			ctn_aredigit(char *s);
 int			ctn_isalnum(int c);
 int			ctn_isascii(int c);
 int			ctn_isprint(int c);

@@ -16,24 +16,30 @@
  * Duplicate part of a string and return it:
  * - Duplicate from the position 'start' and for 'len' characters
  */
-char	*str_substr(char *s, int start, int len)
-{
-	int		i;
-	char	*src;
 
-	i = 0;
-	if ((size_t)(len + start) > str_len(s))
-		return (s);
-	src = malloc((len + 1) * sizeof(char));
-	if (!src)
-		return (NULL);
-	while (s[i + start] != '\0' && i != len)
-	{
-		src[i] = s[i + start];
-		i++;
-	}
-	src[i] = '\0';
-	return (src);
+char    *str_substr(char *s, unsigned int start, size_t len)
+{
+    size_t  slen;
+    size_t  i;
+    char    *sub;
+    if (!s)
+        return (NULL);
+    slen = str_len(s);
+    if (start >= slen)
+        return (malloc(1));
+    if (len > slen - start)
+        len = slen - start;
+    sub = malloc(len + 1);
+    if (!sub)
+        return (NULL);
+    i = 0;
+    while (i < len)
+    {
+        sub[i] = s[start + i];
+        i++;
+    }
+    sub[i] = '\0';
+    return (sub);
 }
 
 /**

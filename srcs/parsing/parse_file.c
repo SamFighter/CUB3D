@@ -27,3 +27,23 @@ int		check_perm_file(char *filename)
 	close (fd);
 	return (0);
 }
+
+int		get_fd(char *filename)
+{
+	int	fd;
+
+	fd = open(file, O_DIRECTORY);
+	if (fd > 0)
+	{
+		close(fd);
+		error(DIRECTORY, file);
+		return (-1);
+	}
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		error(BAD_FILE, file);
+		return (-1);
+	}
+	return (fd);
+}

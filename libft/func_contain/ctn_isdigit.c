@@ -20,3 +20,18 @@ int	ctn_isdigit(int c)
 		return ((int) c);
 	return (0);
 }
+
+int	ctn_aredigit(char *s)
+{
+	int		i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (ctn_isdigit(s[i]))
+			i++;
+		else
+			return (1);
+	}
+	return (0);
+}
