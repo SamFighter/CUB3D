@@ -6,6 +6,10 @@
 #include <math.h>
 #include <fcntl.h>
 
+#define BAD_FILE
+#define DIRECTORY
+#define MAP
+
 typedef struct	s_images
 {
 	//jsp

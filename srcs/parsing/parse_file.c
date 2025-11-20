@@ -12,6 +12,7 @@ int		check_name_file(char *filename)
 		ft_printf("The file doesnt have the extension .cub\n");
 		exit (1);
 	}
+	return (0);
 }
 
 int		check_perm_file(char *filename)
@@ -21,7 +22,7 @@ int		check_perm_file(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf("Error while accessing file\n");
+		error(BAD_FILE, filename);
 		exit (1);
 	}
 	close (fd);
@@ -32,17 +33,17 @@ int		get_fd(char *filename)
 {
 	int	fd;
 
-	fd = open(file, O_DIRECTORY);
+	fd = open(filename, O_DIRECTORY);
 	if (fd > 0)
 	{
 		close(fd);
-		error(DIRECTORY, file);
+		error(DIRECTORY, filename);
 		return (-1);
 	}
-	fd = open(file, O_RDONLY);
+	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		error(BAD_FILE, file);
+		error(BAD_FILE, filename);
 		return (-1);
 	}
 	return (fd);
