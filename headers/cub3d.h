@@ -6,9 +6,13 @@
 #include <math.h>
 #include <fcntl.h>
 
-#define BAD_FILE
-#define DIRECTORY
-#define MAP
+#define EXTENSION "Error : INVALID FILE EXTENSION\nUSAGE : exemple_map[.cub]"
+#define BAD_FILE "Error : ISSUE REGARDING FILE :"
+#define DIRECTORY "Error : FORMAT IS A DIRECTORY :"
+#define MAP "Error : INVALID DATA MAP"
+#define ARGS "Error : INVALID ARGUMENT\nUSAGE : ./cub3d [map.cub]"
+#define MLX "Error : ISSUE REGARDING MLX"
+#define COLORS "ERROR : INVALID COLOR(S)"
 
 typedef struct	s_images
 {
