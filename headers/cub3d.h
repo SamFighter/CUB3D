@@ -37,7 +37,7 @@ typedef struct	s_texture
 //	mlx			*north_t;
 //	mlx			*west_t;
 //	mlx			*east_t;
-//	mlx			*south+t;
+//	mlx			*south_t;
 }				t_texture;
 
 typedef struct	s_player
