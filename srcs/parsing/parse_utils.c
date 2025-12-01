@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int		check_textures(t_textures textures)
+int		check_textures(t_texture *textures)
 {
 	if (textures->north)
 		return (0);
@@ -13,7 +13,7 @@ int		check_textures(t_textures textures)
 	return (1);
 }
 
-int		check_colors(t_colors colors)
+int		check_colors(t_colors *colors)
 {
 	if (colors->c_floors)
 		return (0);

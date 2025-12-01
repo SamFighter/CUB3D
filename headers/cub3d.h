@@ -27,9 +27,9 @@ typedef struct	s_screen
 typedef struct	s_colors
 {
 	int			i_floor[3];
-	int			i_celling[3];
+	int			i_ceiling[3];
 	char		*c_floor;
-	char		*c_celling;
+	char		*c_ceiling;
 }				t_colors;
 
 typedef struct	s_texture
@@ -70,19 +70,19 @@ typedef struct	s_game
 /*                         Functions                        */
 /************************************************************/
 
-void			init_colors(t_game game);
-void			init_data(t_game game);
-void			init_textures(t_game game);
-int				parse_colors(t_colors colors);
+void			init_colors(t_game *game);
+int				init_data(t_game *game);
+void			init_textures(t_game *game);
+int				parse_colors(t_colors *colors);
 void			error(char *type, char *arg);
 int				check_name_file(char *filename);
 int				get_fd(char *filename);
 char			**get_map(int fd);
 char			**get_data_map(char**map, int start);
-void			free_data_texture(t_colors colors, t_textures textures);
-int				define_data_map(t_game game);
-int				check_textures(t_textures textures);
-int				check_colors(t_colors colors);
+void			free_data_texture(t_colors *colors, t_texture *textures);
+int				define_data_map(t_game *game);
+int				check_textures(t_texture *textures);
+int				check_colors(t_colors *colors);
 int				ischarset(char *set, char c);
 void			skip_blank(char **map, int start);
 int				count_lines(char **tab);

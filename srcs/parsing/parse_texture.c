@@ -14,7 +14,7 @@ static char		*set_data(char *line)
 	return (NULL);
 }
 
-void			free_data_texture(t_colors colors, t_textures textures)
+void			free_data_texture(t_colors *colors, t_texture *textures)
 {
 	if (textures)
 	{
@@ -31,28 +31,28 @@ void			free_data_texture(t_colors colors, t_textures textures)
 	{
 		if (colors->c_floor)
 			free(colors->c_floor);
-		if (colors->c_ceilling)
-			free(colors->c_ceilling);
+		if (colors->c_ceiling)
+			free(colors->c_ceiling);
 	}
 }
 
-static int		set_data_map(t_game game, int i, int j)
+static int		set_data_map(t_game *game, int i, int j)
 {
 	char	*sub;
 
-	sub = str_substr(game->map[j], i, str_lchr(&game->map[j][i]));
-	if (game->texture.north == NULL && str_ncmp(sub, "NO", 3) == 0)
-		game->texture.north = set_data(&game->map[j][i + 2]);
-	else if (game->texture.south == NULL && str_ncmp(sub, "SO", 3) == 0)
-		game->texture.south = set_data(&game->map[j][i + 2]);
-	else if (game->texture.west == NULL && str_ncmp(sub, "WE", 3) == 0)
-		game->texture.west = set_data(&game->map[j][i + 2]);
-	else if (game->texture.east == NULL && str_ncmp(sub, "EA", 3) == 0)
-		game->texture.east = set_data(&game->map[j][i + 2]);
+	sub = str_substr(game->map[j], i, ctn_strlchr(&game->map[j][i], ' '));
+	if (game->textures.north == NULL && str_ncmp(sub, "NO", 3) == 0)
+		game->textures.north = set_data(&game->map[j][i + 2]);
+	else if (game->textures.south == NULL && str_ncmp(sub, "SO", 3) == 0)
+		game->textures.south = set_data(&game->map[j][i + 2]);
+	else if (game->textures.west == NULL && str_ncmp(sub, "WE", 3) == 0)
+		game->textures.west = set_data(&game->map[j][i + 2]);
+	else if (game->textures.east == NULL && str_ncmp(sub, "EA", 3) == 0)
+		game->textures.east = set_data(&game->map[j][i + 2]);
 	else if (game->colors.c_floor == NULL && str_ncmp(sub, "F", 2) == 0)
 		game->colors.c_floor = set_data(&game->map[j][i + 1]);
-	else if (game->colors.c_ceilling == NULL && str_ncmp(sub, "C", 2) == 0)
-		game->colors.c_ceilling = set_data(&game->map[j][i + 1]);
+	else if (game->colors.c_ceiling == NULL && str_ncmp(sub, "C", 2) == 0)
+		game->colors.c_ceiling = set_data(&game->map[j][i + 1]);
 	else if (str_len(game->map[j]) > 0 && game->map[j][i] != '\0')
 	{
 		free(sub);
@@ -83,7 +83,7 @@ static int		verify_data(t_game *game, int j)
 	return (1);
 }
 
-int				define_data_map(t_game game)
+int				define_data_map(t_game *game)
 {
 	int		i;
 	int		j;

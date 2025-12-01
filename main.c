@@ -1,10 +1,12 @@
 #include "cub3d.h"
 
-static int	init_all(t_game *game)
+static int		init_all(t_game *game)
 {
 	init_colors(game);
 	init_textures(game);
-	init_data(game);
+	if (init_data(game) == 1)
+		return (1);
+	return (0);
 }
 static int		check_args(int ac, char **av)
 {
@@ -20,8 +22,9 @@ int main(int ac, char **av)
 {
 	t_game	game;
 
-	init_all(game);
-	if (game == NULL)
+	if (check_args(ac, av) == 1)
+		return (1);
+	if (init_all(&game) == 1)
 		return (1);
 	printf("reussi\n");
 }

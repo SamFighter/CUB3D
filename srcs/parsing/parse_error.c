@@ -2,8 +2,8 @@
 
 void		error(char *type, char *arg)
 {
-	fd_printf("%s\n", type, 2);
+	fd_printf(2, "%s\n", type);
 	if (arg)
-		fd_printf("%s\n", type, 2);
+		fd_printf(2, "%s\n", type);
 	exit (1);
 }
