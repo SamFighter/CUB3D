@@ -87,6 +87,7 @@ fclean:
 		@printf "$(L__CYA)	~/.build$(OFF)\n"
 		@printf "$(L__CYA)	~/$(N_NAME)$(OFF)\n"
 		rm -rf $(N_NAME)
+		rm -rf .build
 
 re:
 		@printf "$(_B_RED)RE-STARTED FROM SCRATCH$(OFF)$(_RESET)\n"
