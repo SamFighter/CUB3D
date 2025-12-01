@@ -15,20 +15,6 @@ int		check_name_file(char *filename)
 	return (0);
 }
 
-int		check_perm_file(char *filename)
-{
-	int		fd;
-
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-	{
-		error(BAD_FILE, filename);
-		exit (1);
-	}
-	close (fd);
-	return (0);
-}
-
 int		get_fd(char *filename)
 {
 	int	fd;

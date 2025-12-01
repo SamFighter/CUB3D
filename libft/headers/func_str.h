@@ -47,7 +47,7 @@ int			str_lnstr(const char *big, const char *little, size_t start);
 int			str_llstr(char *big, char *little, size_t len, int start);
 int			str_nlstr(char *big, char *little, int start);
 char		*str_trim(char const *s1, char const *set);
-char		*str_substr(char *s, int start, int len);
+char		*str_substr(char *s, unsigned int start, size_t len);
 char		*str_subrstr(char *s, int end, int len);
 size_t		str_len(const char *s);
 size_t		str_arrlen(const char **s);

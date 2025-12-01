@@ -38,3 +38,27 @@ static int		check_decimal_colors(int *i_colors, char **color)
 		return (1);
 	return (0);
 }
+
+int		parse_colors(t_colors colors)
+{
+	char	**floor;
+	char	**ceil;
+
+	if (check_comma(colors->c_floor) == 1 || colors->c_ceilling == 1)
+		return (1);
+	floor = str_split(colors->c_floor, ',');
+	if (floor == NULL || floor[0] == NULL)
+		return (1);
+	ceil = str_split(colors->c_ceilling, ',');
+	if (ceil == NULL || ceil[0] == NULL)
+		return (1);
+	if (check_decimal_colors(colors->i_floors, floor) == 1 || check_decimal_colors(colors->i_ceilling, ceil) == 1)
+	{
+		utl_super_free(floor);
+		utl_super_free(ceil);
+		return (1);
+	}
+	utl_super_free(floor);
+	utl_super_free(ceil);
+	return (0);
+}

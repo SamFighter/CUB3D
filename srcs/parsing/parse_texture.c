@@ -57,7 +57,7 @@ static int		set_data_map(t_game game, int i, int j)
 	{
 		free(sub);
 		free_data_texture(game->colors, game->textures);
-		error(MAP, NULL); //need a error function that will help me
+		error(MAP, NULL);
 		return (1);
 	}
 	free(sub);
@@ -72,7 +72,15 @@ static int		verify_data(t_game *game, int j)
 		free_data_texture(&game->colors, &game->textures);
 		error(MAP, NULL);
 	}
-	if ()//parsing function for c_floor and c_ceilling
+	else if (parse_colors(&game->colors) == 1)
+	{
+		utl_super_free(game->data_map);
+		free_data_texture(&game->colors, &game->textures);
+		error(COLORS, NULL);
+	}
+	else
+		return (0);
+	return (1);
 }
 
 int				define_data_map(t_game game)
@@ -91,5 +99,7 @@ int				define_data_map(t_game game)
 			return (1);
 		j++;
 	}
-	//verify_data
+	if (verify_data(game, i) == 1)
+		return (1);
+	return (0);
 }

@@ -73,7 +73,7 @@ static int	parse_map_content(char **map, int j)
 		i = 0;
 		if (compare_char(&map[j][i]) || map_closed(map, map[j], i, j))
 			return (1);
-		else if (map[j][i] != "1" && map[j][i] != ' ')
+		else if (map[j][i] != '1' && map[j][i] != ' ')
 			return (1);
 		while (map[j][i])
 		{
