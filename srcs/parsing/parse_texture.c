@@ -56,7 +56,7 @@ static int		set_data_map(t_game *game, int i, int j)
 	else if (str_len(game->map[j]) > 0 && game->map[j][i] != '\0')
 	{
 		free(sub);
-		free_data_texture(game->colors, game->textures);
+		free_data_texture(&game->colors, &game->textures);
 		error(MAP, NULL);
 		return (1);
 	}
@@ -67,14 +67,14 @@ static int		set_data_map(t_game *game, int i, int j)
 static int		verify_data(t_game *game, int j)
 {
 	game->data_map = get_data_map(game->map, j);
-	if (map->data_map == NULL)
+	if (game->data_map == NULL)
 	{
 		free_data_texture(&game->colors, &game->textures);
 		error(MAP, NULL);
 	}
 	else if (parse_colors(&game->colors) == 1)
 	{
-		utl_super_free(game->data_map);
+		utl_super_free((void **)game->data_map);
 		free_data_texture(&game->colors, &game->textures);
 		error(COLORS, NULL);
 	}
@@ -89,7 +89,7 @@ int				define_data_map(t_game *game)
 	int		j;
 
 	j = 0;
-	while (game->map[j] && check_textures(&game->textures) == 0 \
+	while ((game->map[j] && check_textures(&game->textures) == 0) \
 		|| check_colors(&game->colors) == 0)
 	{
 		i = 0;
@@ -99,7 +99,7 @@ int				define_data_map(t_game *game)
 			return (1);
 		j++;
 	}
-	if (verify_data(game, i) == 1)
+	if (verify_data(game, j) == 1)
 		return (1);
 	return (0);
 }

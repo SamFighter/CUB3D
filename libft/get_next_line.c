@@ -13,82 +13,102 @@
 #include "headers/get_next_line.h"
 #include "headers/libft.h"
 
-/**
- * Return the next line of a file-descriptor 'fd' and return it
- */
-char	*get_next_line(int fd)
+static int	nl_in_str(char *s)
 {
-	static char	*dump;
-	char		*dest;
-	char		*buffer;
-
-	if (fd < 0 || BUFFER_SIZE <= 0)
-	{
-		free(dump);
-		dump = NULL;
-		return (NULL);
-	}
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer)
-		return (NULL);
-	dest = dump_line(fd, (char *) dump, buffer);
-	if (buffer)
-		free(buffer);
-	if (!dest)
-	{
-		free(dump);
-		dump = NULL;
-		return (NULL);
-	}
-	dump = clean_dump(dest);
-	return (dest);
-}
-
-char	*dump_line(int fd, char *dump, char *buffer)
-{
-	long	readed;
-	char	*tmp;
-
-	readed = 0;
-	while (readed >= 0)
-	{
-		readed = read(fd, buffer, BUFFER_SIZE);
-		if (readed < 0)
-			return (NULL);
-		buffer[readed] = 0;
-		if (readed == 0)
-			return (dump);
-		if (!dump)
-			dump = str_dup("");
-		tmp = dump;
-		dump = str_join(tmp, buffer);
-		free(tmp);
-		if (ctn_strchr(buffer, '\n'))
-			return (dump);
-	}
-	return (dump);
-}
-
-char	*clean_dump(char *dest)
-{
-	char	*dump;
-	long	i;
+	int	i;
 
 	i = 0;
-	if (dest[0] == 0)
+	while (s != NULL && s[i] != '\0')
 	{
-		dest = NULL;
-		return (NULL);
-	}
-	while (dest[i] != '\n' && dest[i] != 0)
+		if (s[i] == '\n')
+			return (1);
 		i++;
-	dump = str_substr(dest, i + 1, str_len(dest) - i);
-	if (!dump || dump[0] == 0)
-	{
-		free(dump);
-		return (NULL);
 	}
-	if (dest[i] != 0)
-		dest[i + 1] = 0;
-	return (dump);
+	return (0);
+}
+
+static char	*join(char *line, char *buf)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	i = 0;
+	while (line != NULL && line[i] != '\0')
+		i++;
+	str = malloc(sizeof(char) * (i + BUFFER_SIZE + 1));
+	i = 0;
+	while (line != NULL && line[i] != '\0')
+	{
+		str[i] = line[i];
+		i++;
+	}
+	j = 0;
+	while (buf[j] != '\0')
+	{
+		str[i] = buf[j];
+		i++;
+		j++;
+	}
+	str[i] = '\0';
+	free(line);
+	return (str);
+}
+
+static int	cut(char *line, char **buf)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (line[i] != '\0' && line[i] != '\n')
+		i++;
+	*buf = malloc(sizeof(char) * (i + 2));
+	j = 0;
+	while (j <= i)
+	{
+		(*buf)[j] = line[j];
+		j++;
+	}
+	(*buf)[j] = '\0';
+	if (nl_in_str(line) == 0 || line[j] == '\0')
+		return (1);
+	i = 0;
+	while (line[j] != '\0')
+	{
+		line[i] = line[j];
+		i++;
+		j++;
+	}
+	line[i] = '\0';
+	return (0);
+}
+
+char	*get_next_line(int fd)
+{
+	char		*buf;
+	int			read_bytes;
+	static char	*line = NULL;
+
+	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	while (1)
+	{
+		read_bytes = read(fd, buf, BUFFER_SIZE);
+		if (read_bytes <= 0)
+			break ;
+		buf[read_bytes] = '\0';
+		line = join(line, buf);
+		if (nl_in_str(line) == 1)
+			break ;
+	}
+	free(buf);
+	buf = NULL;
+	if (line != NULL)
+		read_bytes = cut(line, &buf);
+	if (read_bytes == 1)
+	{
+		free(line);
+		line = NULL;
+	}
+	return (buf);
 }

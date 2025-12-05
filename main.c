@@ -24,6 +24,9 @@ int main(int ac, char **av)
 
 	if (check_args(ac, av) == 1)
 		return (1);
+	game.fd = get_fd(av[1]);
+	if (game.fd == -1)
+		return (1);
 	if (init_all(&game) == 1)
 		return (1);
 	printf("reussi\n");

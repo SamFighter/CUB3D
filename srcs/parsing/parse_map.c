@@ -15,11 +15,11 @@ char	**get_map(int fd)
 	tmp = get_next_line(fd);
 	while (tmp != NULL)
 	{
-		line = ft_strjoin(line, tmp);
+		line = str_join(line, tmp);
 		free(tmp);
 		tmp = get_next_line(fd);
 	}
-	map = ft_split(line, '\n');
+	map = str_split(line, '\n');
 	free(line);
 	free(tmp);
 	return (map);
@@ -96,21 +96,21 @@ char		**get_data_map(char **map, int start)
 	skip_blank(map, &start);
 	if (parse_map_content(map, start))
 		return (NULL);
-	content = malloc(sizeof(char *) * (count_lines(map) + 1));
-	if (content == NULL)
+	data = malloc(sizeof(char *) * (count_lines(map) + 1));
+	if (data == NULL)
 		return (NULL);
 	j = 0;
 	while (map[start])
 	{
-		content[j] = str_substr(map[start], 0, str_len(map[start]));
-		if (content[j] == NULL)
+		data[j] = str_substr(map[start], 0, str_len(map[start]));
+		if (data[j] == NULL)
 		{
-			utl_super_free(content);
+			utl_super_free((void **)data);
 			return (NULL);
 		}
 		j++;
 		start++;
 	}
-	content[j] = NULL;
-	return (content);
+	data[j] = NULL;
+	return (data);
 }
