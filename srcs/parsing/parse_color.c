@@ -30,7 +30,7 @@ static int		check_decimal_colors(int *i_colors, char **color)
 		i_stash = cnv_atoi(color[i]);
 		if (i_stash < 0 || i_stash > 255)
 			return (1);
-		else if (i > 3)
+		else if (i < 3)
 		  i_colors[i] = i_stash;
 		i++;
 	}

@@ -2,22 +2,22 @@
 
 int		check_textures(t_texture *textures)
 {
-	if (textures->north)
+	if (!textures->north)
 		return (0);
-	if (textures->south)
+	if (!textures->south)
 		return (0);
-	if (textures->west)
+	if (!textures->west)
 		return (0);
-	if (textures->east)
+	if (!textures->east)
 		return (0);
 	return (1);
 }
 
 int		check_colors(t_colors *colors)
 {
-	if (colors->c_floor)
+	if (!colors->c_floor)
 		return (0);
-	if (colors->c_ceiling)
+	if (!colors->c_ceiling)
 		return (0);
 	return (1);
 }

@@ -29,5 +29,9 @@ int main(int ac, char **av)
 		return (1);
 	if (init_all(&game) == 1)
 		return (1);
-	printf("reussi\n");
+	ft_printf("MAP :\n\n%S\n\nDATA_MAP :\n%S\n\n", game.map, game.data_map);
+	printf("fd map : %d\n\n", game.fd);
+	printf("textures :\nNorth : %s\nSouth : %s\nWest : %s\nEast : %s\n", game.textures.north, game.textures.south, game.textures.west, game.textures.east);
+	printf("\ncolors en char : \nFloor : %s\nCeiling : %s\n", game.colors.c_floor, game.colors.c_ceiling);
+	printf("\ncolors en int : \nFloor : %d , %d , %d\nCeiling : %d , %d , %d\n", game.colors.i_floor[0], game.colors.i_floor[1], game.colors.i_floor[2], game.colors.i_ceiling[0], game.colors.i_ceiling[1], game.colors.i_ceiling[2]);
 }

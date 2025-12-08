@@ -50,9 +50,9 @@ static int		set_data_map(t_game *game, int i, int j)
 	else if (game->textures.east == NULL && str_ncmp(sub, "EA", 3) == 0)
 		game->textures.east = set_data(&game->map[j][i + 2]);
 	else if (game->colors.c_floor == NULL && str_ncmp(sub, "F", 2) == 0)
-		game->colors.c_floor = set_data(&game->map[j][i + 1]);
+		game->colors.c_floor = set_data(&game->map[j][i]);
 	else if (game->colors.c_ceiling == NULL && str_ncmp(sub, "C", 2) == 0)
-		game->colors.c_ceiling = set_data(&game->map[j][i + 1]);
+		game->colors.c_ceiling = set_data(&game->map[j][i]);
 	else if (str_len(game->map[j]) > 0 && game->map[j][i] != '\0')
 	{
 		free(sub);
