@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static int		check_comma(char *str)
+static int	check_comma(char *str)
 {
 	int		i;
 
@@ -19,7 +19,7 @@ static int		check_comma(char *str)
 	return (0);
 }
 
-static int		check_decimal_colors(int *i_colors, char **color)
+static int	check_decimal_colors(int *i_colors, char **color)
 {
 	int		i;
 	int		i_stash;
@@ -31,7 +31,7 @@ static int		check_decimal_colors(int *i_colors, char **color)
 		if (i_stash < 0 || i_stash > 255)
 			return (1);
 		else if (i < 3)
-		  i_colors[i] = i_stash;
+			i_colors[i] = i_stash;
 		i++;
 	}
 	if (i != 3)
@@ -39,12 +39,13 @@ static int		check_decimal_colors(int *i_colors, char **color)
 	return (0);
 }
 
-int		parse_colors(t_colors *colors)
+int	parse_colors(t_colors *colors)
 {
 	char	**floor;
 	char	**ceil;
 
-	if (check_comma(colors->c_floor) == 1 || check_comma(colors->c_ceiling) == 1)
+	if (check_comma(colors->c_floor) == 1 \
+		|| check_comma(colors->c_ceiling) == 1)
 		return (1);
 	floor = str_split(colors->c_floor, ',');
 	if (floor == NULL || floor[0] == NULL)
@@ -52,7 +53,8 @@ int		parse_colors(t_colors *colors)
 	ceil = str_split(colors->c_ceiling, ',');
 	if (ceil == NULL || ceil[0] == NULL)
 		return (1);
-	if (check_decimal_colors(colors->i_floor, floor) == 1 || check_decimal_colors(colors->i_ceiling, ceil) == 1)
+	if (check_decimal_colors(colors->i_floor, floor) == 1 \
+		|| check_decimal_colors(colors->i_ceiling, ceil) == 1)
 	{
 		utl_super_free((void **)floor);
 		utl_super_free((void **)ceil);

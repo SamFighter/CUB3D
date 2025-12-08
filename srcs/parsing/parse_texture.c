@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static char		*set_data(char *line)
+static char	*set_data(char *line)
 {
 	int		i;
 
@@ -14,7 +14,7 @@ static char		*set_data(char *line)
 	return (NULL);
 }
 
-void			free_data_texture(t_colors *colors, t_texture *textures)
+void	free_data_texture(t_colors *colors, t_texture *textures)
 {
 	if (textures)
 	{
@@ -36,7 +36,7 @@ void			free_data_texture(t_colors *colors, t_texture *textures)
 	}
 }
 
-static int		set_data_map(t_game *game, int i, int j)
+static int	set_data_map(t_game *game, int i, int j)
 {
 	char	*sub;
 
@@ -64,7 +64,7 @@ static int		set_data_map(t_game *game, int i, int j)
 	return (0);
 }
 
-static int		verify_data(t_game *game, int j)
+static int	verify_data(t_game *game, int j)
 {
 	game->data_map = get_data_map(game->map, j);
 	if (game->data_map == NULL)
@@ -83,7 +83,7 @@ static int		verify_data(t_game *game, int j)
 	return (1);
 }
 
-int				define_data_map(t_game *game)
+int	define_data_map(t_game *game)
 {
 	int		i;
 	int		j;

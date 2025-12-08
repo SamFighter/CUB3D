@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int		check_name_file(char *filename)
+int	check_name_file(char *filename)
 {
 	if (str_len(filename) == 4)
 	{
@@ -15,7 +15,7 @@ int		check_name_file(char *filename)
 	return (0);
 }
 
-int		get_fd(char *filename)
+int	get_fd(char *filename)
 {
 	int	fd;
 

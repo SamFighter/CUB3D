@@ -77,7 +77,8 @@ static int	parse_map_content(char **map, int j)
 			return (1);
 		while (map[j][i])
 		{
-			if (map[j][i] == 'N' || map[j][i] == 'S' || map[j][i] == 'W' || map[j][i] == 'E')
+			if (map[j][i] == 'N' || map[j][i] == 'S' \
+				|| map[j][i] == 'W' || map[j][i] == 'E')
 				player++;
 			i++;
 		}
@@ -88,7 +89,7 @@ static int	parse_map_content(char **map, int j)
 	return (0);
 }
 
-char		**get_data_map(char **map, int start)
+char	**get_data_map(char **map, int start)
 {
 	char	**data;
 	int		j;
