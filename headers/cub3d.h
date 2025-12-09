@@ -86,5 +86,7 @@ int				check_colors(t_colors *colors);
 int				ischarset(char *set, char c);
 void			skip_blank(char **map, int *start);
 int				count_lines(char **tab);
+int				check_textures_paths(t_texture *textures);
+
 
 #endif

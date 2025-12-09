@@ -34,3 +34,37 @@ int	get_fd(char *filename)
 	}
 	return (fd);
 }
+
+static int	verify_paths(char *path)
+{
+	int	fd;
+
+	fd = open(path, O_DIRECTORY);
+	if (fd > 0)
+	{
+		close(fd);
+		error(DIRECTORY, path);
+		return (-1);
+	}
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		error(BAD_FILE, path);
+		return (-1);
+	}
+	return (fd);
+}
+
+int	check_textures_paths(t_texture *textures)
+{
+	if (verify_paths(textures->north) == -1)
+		return (1);
+	else if (verify_paths(textures->south) == -1)
+		return (1);
+	else if (verify_paths(textures->west) == -1)
+		return (1);
+	else if (verify_paths(textures->east) == -1)
+		return (1);
+	else
+		return (0);
+}
