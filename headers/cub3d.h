@@ -14,11 +14,6 @@
 #define MLX "Error : ISSUE REGARDING MLX"
 #define COLORS "ERROR : INVALID COLOR(S)"
 
-typedef struct	s_images
-{
-	//jsp
-}				t_images;
-
 typedef struct	s_screen
 {
 	float		width;
@@ -38,10 +33,6 @@ typedef struct	s_texture
 	char		*west;
 	char		*east;
 	char		*south;
-//	mlx			*north_t;
-//	mlx			*west_t;
-//	mlx			*east_t;
-//	mlx			*south_t;
 }				t_texture;
 
 typedef struct	s_player
@@ -60,7 +51,6 @@ typedef struct	s_game
 	int			fd;
 	t_player	player;
 	t_colors	colors;
-	t_images	images;
 	t_screen	screen;
 	t_texture	textures;
 	void		*mlx;
@@ -87,6 +77,5 @@ int				ischarset(char *set, char c);
 void			skip_blank(char **map, int *start);
 int				count_lines(char **tab);
 int				check_textures_paths(t_texture *textures);
-
 
 #endif
