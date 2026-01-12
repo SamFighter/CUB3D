@@ -1,7 +1,7 @@
-NO ./assets/yo.png
-SO ./assets/zhabri.png
-WE ./assets/chad.png
-EA ./assets/jaime_pas_les_gens.png
+NO ./textures/NO.jpg
+SO ./textures/SO.jpg
+WE ./textures/WE.jpg
+EA ./textures/EA.jpg
 
 F 0,255,1
 C 0,100,255

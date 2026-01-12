@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_color.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/18 21:04:36 by salabbe           #+#    #+#             */
+/*   Updated: 2025/12/18 21:05:34 by bcausseq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	check_comma(char *str)
@@ -19,7 +31,7 @@ static int	check_comma(char *str)
 	return (0);
 }
 
-static int	check_decimal_colors(int *i_colors, char **color)
+static int	check_decimal_colors(mlx_color *i_colors, char **color)
 {
 	int		i;
 	int		i_stash;
@@ -27,11 +39,15 @@ static int	check_decimal_colors(int *i_colors, char **color)
 	i = 0;
 	while (color[i])
 	{
-		i_stash = cnv_atoi(color[i]);
+		i_stash = ft_atoi(color[i]);
 		if (i_stash < 0 || i_stash > 255)
 			return (1);
-		else if (i < 3)
-			i_colors[i] = i_stash;
+		if (i == 0)
+			i_colors->r = i_stash;
+		else if (i == 1)
+			i_colors->g = i_stash;
+		else if (i == 2)
+			i_colors->b = i_stash;
 		i++;
 	}
 	if (i != 3)
@@ -44,17 +60,17 @@ int	parse_colors(t_colors *colors)
 	char	**floor;
 	char	**ceil;
 
-	if (check_comma(colors->c_floor) == 1 \
+	if (check_comma(colors->c_floor) == 1
 		|| check_comma(colors->c_ceiling) == 1)
 		return (1);
-	floor = str_split(colors->c_floor, ',');
+	floor = ft_split(colors->c_floor, ',');
 	if (floor == NULL || floor[0] == NULL)
 		return (1);
-	ceil = str_split(colors->c_ceiling, ',');
+	ceil = ft_split(colors->c_ceiling, ',');
 	if (ceil == NULL || ceil[0] == NULL)
 		return (1);
-	if (check_decimal_colors(colors->i_floor, floor) == 1 \
-		|| check_decimal_colors(colors->i_ceiling, ceil) == 1)
+	if (check_decimal_colors(&(colors->floor), floor) == 1
+		|| check_decimal_colors(&(colors->ceiling), ceil) == 1)
 	{
 		utl_super_free((void **)floor);
 		utl_super_free((void **)ceil);

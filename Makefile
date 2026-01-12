@@ -1,97 +1,101 @@
-N_NAME		= cub3d
-
 # **************************************************************************** #
-#								    										   #
-#				=======>		INGREDIENTS			<=======		   		   #
-#																			   #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/05/17 01:17:51 by bcausseq          #+#    #+#              #
+#    Updated: 2025/12/22 22:55:30 by bcausseq         ###   ########.fr        #
+#                                                                              #
 # **************************************************************************** #
+CC 			= cc
 
-LIBFT 		= ./libft/libft.a
+CFLAGS		= -Wall -Wextra -Werror -g
+#CFLAGS		= -Wall -Wextra -Werror=vla -g -O0 -fno-builtin -mno-omit-leaf-frame-pointer -fno-omit-frame-pointer -fsanitize=address,pointer-compare,pointer-subtract,leak,undefined,shift,shift-exponent,shift-base,integer-divide-by-zero,unreachable,vla-bound,null,signed-integer-overflow,bounds,alignment,float-divide-by-zero,float-cast-overflow,nonnull-attribute,returns-nonnull-attribute,bool,enum,pointer-overflow,builtin -fsanitize-address-use-after-scope
 
+NAME		= cub
 
-MANDATORY	= 		main.c 									\
-					srcs/init/init_colors.c					\
-					srcs/init/init_data.c					\
-					srcs/init/init_mlx.c					\
-					srcs/init/init_player.c					\
-					srcs/init/init_screen.c					\
-					srcs/init/init_textures.c				\
-					srcs/parsing/parse_color.c				\
-					srcs/parsing/parse_error.c				\
-					srcs/parsing/parse_file.c				\
-					srcs/parsing/parse_texture.c			\
-					srcs/parsing/parse_map.c				\
-					srcs/parsing/parse_utils.c				\
+LIBFT		= ./libft
 
-N_OBJS		=	$(MANDATORY:%.c=.build/%.o)
-DEPS		=	$(N_OBJS:%.o=%.d)
+LIBFT_LIB	= $(LIBFT)/libft.a
 
-CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -g
-CPPFLAGS	=	-MP	-MMD -Iheaders									\
-				-Ilibft/headers										\
-				-Ilibft
+HEADER		= includes
 
-LDFLAGS		=	-Llibft -lft
+MLX_PATH	= ./MLX
+MLX_INC		= $(MLX_PATH)/includes
+MLX			= $(MLX_PATH)/libmlx.so
 
-# **************************************************************************** #
-#								    										   #
-#			    	=======>		TOOLS			<=======		   		   #
-#																			   #
-# **************************************************************************** #
+SRCS		= drawing.c\
+			drawing_utils.c\
+			func_to_throw.c\
+			srcs/init/init_colors.c\
+			srcs/init/init_data.c\
+			srcs/init/init_mlx.c\
+			srcs/init/init_player.c\
+			srcs/init/init_screen.c\
+			srcs/init/init_textures.c\
+			keys.c\
+			main.c\
+			mlx.c\
+			movements.c\
+			srcs/parsing/parse_color.c\
+			srcs/parsing/parse_error.c\
+			srcs/parsing/parse_file.c\
+			srcs/parsing/parse_map.c\
+			srcs/parsing/parse_texture.c\
+			srcs/parsing/parse_utils.c\
+			player.c\
+			rays.c
 
-MAKEFLAGS	+=	--silent --no-print-directory
+OBJ_DIR		= build
 
-# **************************************************************************** #
-#								    										   #
-#			    	=======>		RECIPES			<=======		   		   #
-#																			   #
-# **************************************************************************** #
+OBJ			= $(SRCS:.c=.o)
 
-all:	$(N_NAME)
+OBJ			:= $(addprefix $(OBJ_DIR)/manda/,$(OBJ))
 
-$(N_NAME): $(LIBFT) $(N_OBJS)
-		$(CC) $(CFLAGS) $(N_OBJS) $(LDFLAGS) -o $(N_NAME)
-		@printf "$(L__PUR)CREATED$(OFF) $(LB_CYA)OBJS$(_RESET) $(L__CYA)in ~/.build$(OFF)\n"
-		@printf "$(L__PUR)CREATED$(OFF) $(L__CYA)$(N_NAME)$(OFF)\n"
+# Colors
+RED = \033[0;31m
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+BLUE = \033[0;34m
+PURPLE = \033[0;35m
+CYAN = \033[0;36m
+WHITE = \033[0;37m
+BOLD = \033[1m
+RESET = \033[0m
 
-$(LIBFT):
-		$(MAKE) -C libft
+all:					$(NAME)
 
-lre:
-		@printf "$(LB_PUR)RE-MAKING LIBFT$(OFF)\n"
-		$(MAKE) -C libft re
+$(MLX_PATH):
+	@if [ ! -d "$(MLX_PATH)" ]; then \
+		git clone https://github.com/Seekrs/MacroLibX $(MLX_PATH); \
+	fi
 
-.build/%.o: %.c
-		mkdir -p $(@D)
-		$(CC) $(CFLAGS) -c $(CPPFLAGS) $< -o $@
+$(NAME):				$(OBJ) | $(MLX_PATH)
+	@make --no-print-directory -C $(LIBFT)
+	@make --no-print-directory -C $(MLX_PATH) -j
+	@$(CC) $(CFLAGS) -o $@ $^ $(LIBFT_LIB) $(MLX) -lSDL2 -lm
 
--include $(DEPS)
-
-lclean:
-		@printf "$(LB_PUR)EXTERMINATE:$(OFF)\n"
-		$(MAKE) -C libft clean
-		@printf "$(L__CYA)	~/libft/.build$(OFF)\n"
+$(OBJ_DIR)/manda/%.o:	%.c | $(MLX_PATH)
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) -I$(LIBFT) -I$(HEADER) -I$(MLX_INC) -c $< -o $@
 
 clean:
-		@printf "$(LB_PUR)EXTERMINATE:$(OFF)\n"
-		$(MAKE) -C libft clean
-		@printf "$(L__CYA)	~/libft/.build$(OFF)\n"
-		@printf "$(L__CYA)	~/.build$(OFF)\n"
-		rm -rf .build
+	@echo "$(YELLOW)🧹 Cleaning object files...$(RESET)"
+	@make --no-print-directory -C $(LIBFT) clean
+	@make --no-print-directory -C $(MLX_PATH) clean
+	@rm -f $(OBJ)
+	@rm -rf $(OBJ_DIR)
+	@echo "$(GREEN)✨ Clean completed!$(RESET)"
 
-fclean:
-		@printf "$(LB_PUR)EXTERMINATE:$(OFF)\n"
-		@printf "$(L__CYA)	~/libft/.build$(OFF)\n"
-		$(MAKE) -C libft fclean
-		@printf "$(L__CYA)	~/.build$(OFF)\n"
-		@printf "$(L__CYA)	~/$(N_NAME)$(OFF)\n"
-		rm -rf $(N_NAME)
-		rm -rf .build
+fclean:					clean
+	@echo "$(YELLOW)🗑️  Full clean in progress...$(RESET)"
+	@make --no-print-directory -C $(LIBFT) fclean
+	#@make --no-print-directory -C $(MLX_PATH) fclean
+	@rm -f $(NAME)
+	@echo "$(GREEN)💀 Everything purged from Hell!$(RESET)"
 
-re:
-		@printf "$(_B_RED)RE-STARTED FROM SCRATCH$(OFF)$(_RESET)\n"
-		$(MAKE) fclean
-		$(MAKE) all
+re:						fclean all
 
-.PHONY: all clean fclean re lre
+.PHONY: all clean fclean re

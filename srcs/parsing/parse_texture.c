@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_texture.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/13 19:02:35 by salabbe           #+#    #+#             */
+/*   Updated: 2025/12/22 21:40:53 by bcausseq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static char	*set_data(char *line)
@@ -5,12 +17,12 @@ static char	*set_data(char *line)
 	int		i;
 
 	i = 0;
-	while (ctn_iswhitespace(line[i]))
+	while (ft_isspace(line[i]))
 		i++;
-	if ((line[i] == 'C' || line[i] == 'F') && (str_len(line) > 3))
-		return (str_substr(line, i + 2, str_len(line)));
+	if ((line[i] == 'C' || line[i] == 'F') && (ft_strlen(line) > 3))
+		return (ft_substr(line, i + 2, ft_strlen(line)));
 	else if (line[i] == '.' && line[i + 1] == '/')
-		return (str_substr(line, i + 2, str_len(line)));
+		return (ft_substr(line, i + 2, ft_strlen(line)));
 	return (NULL);
 }
 
@@ -18,14 +30,15 @@ void	free_data_texture(t_colors *colors, t_texture *textures)
 {
 	if (textures)
 	{
-		if (textures->north)
-			free(textures->north);
-		if (textures->south)
-			free(textures->south);
-		if (textures->west)
-			free(textures->west);
-		if (textures->east)
-			free(textures->east);
+		if (textures->no.path)
+			free(textures->no.path);
+		if (textures->so.path)
+			free(textures->so.path);
+		if (textures->we.path)
+			free(textures->we.path);
+		if (textures->ea.path)
+			free(textures->ea.path);
+		textures = NULL;
 	}
 	if (colors)
 	{
@@ -33,6 +46,7 @@ void	free_data_texture(t_colors *colors, t_texture *textures)
 			free(colors->c_floor);
 		if (colors->c_ceiling)
 			free(colors->c_ceiling);
+		colors = NULL;
 	}
 }
 
@@ -40,25 +54,26 @@ static int	set_data_map(t_game *game, int i, int j)
 {
 	char	*sub;
 
-	sub = str_substr(game->map[j], i, ctn_strlchr(&game->map[j][i], ' '));
-	if (game->textures.north == NULL && str_ncmp(sub, "NO", 3) == 0)
-		game->textures.north = set_data(&game->map[j][i + 2]);
-	else if (game->textures.south == NULL && str_ncmp(sub, "SO", 3) == 0)
-		game->textures.south = set_data(&game->map[j][i + 2]);
-	else if (game->textures.west == NULL && str_ncmp(sub, "WE", 3) == 0)
-		game->textures.west = set_data(&game->map[j][i + 2]);
-	else if (game->textures.east == NULL && str_ncmp(sub, "EA", 3) == 0)
-		game->textures.east = set_data(&game->map[j][i + 2]);
-	else if (game->colors.c_floor == NULL && str_ncmp(sub, "F", 2) == 0)
-		game->colors.c_floor = set_data(&game->map[j][i]);
-	else if (game->colors.c_ceiling == NULL && str_ncmp(sub, "C", 2) == 0)
-		game->colors.c_ceiling = set_data(&game->map[j][i]);
-	else if (str_len(game->map[j]) > 0 && game->map[j][i] != '\0')
+	sub = ft_substr(game->map.map[j], i, ft_strlchr(&game->map.map[j][i], ' '));
+	if (!sub)
+		return (1);
+	if (game->texture.no.path == NULL && ft_strncmp(sub, "NO", 3) == 0)
+		game->texture.no.path = set_data(&game->map.map[j][i + 2]);
+	else if (game->texture.so.path == NULL && ft_strncmp(sub, "SO", 3) == 0)
+		game->texture.so.path = set_data(&game->map.map[j][i + 2]);
+	else if (game->texture.we.path == NULL && ft_strncmp(sub, "WE", 3) == 0)
+		game->texture.we.path = set_data(&game->map.map[j][i + 2]);
+	else if (game->texture.ea.path == NULL && ft_strncmp(sub, "EA", 3) == 0)
+		game->texture.ea.path = set_data(&game->map.map[j][i + 2]);
+	else if (game->colors.c_floor == NULL && ft_strncmp(sub, "F", 2) == 0)
+		game->colors.c_floor = set_data(&game->map.map[j][i]);
+	else if (game->colors.c_ceiling == NULL && ft_strncmp(sub, "C", 2) == 0)
+		game->colors.c_ceiling = set_data(&game->map.map[j][i]);
+	else if (ft_strlen(game->map.map[j]) > 0 && game->map.map[j][i] != '\0')
 	{
 		free(sub);
-		free_data_texture(&game->colors, &game->textures);
-		error(MAP, NULL);
-		return (1);
+		free_data_texture(&game->colors, &game->texture);
+		error(MAP, NULL, game, FALSE);
 	}
 	free(sub);
 	return (0);
@@ -66,17 +81,18 @@ static int	set_data_map(t_game *game, int i, int j)
 
 static int	verify_data(t_game *game, int j)
 {
-	game->data_map = get_data_map(game->map, j);
-	if (game->data_map == NULL)
+	game->map.data_map = get_data_map(game->map.map, j, &(game->map.height));
+	if (game->map.data_map == NULL)
 	{
-		free_data_texture(&game->colors, &game->textures);
-		error(MAP, NULL);
+		free_data_texture(&game->colors, &game->texture);
+		error(MAP, NULL, game, FALSE);
 	}
-	else if (parse_colors(&game->colors) == 1)
+	get_player(&(game->map), &(game->player));
+	if (parse_colors(&game->colors) == 1)
 	{
-		utl_super_free((void **)game->data_map);
-		free_data_texture(&game->colors, &game->textures);
-		error(COLORS, NULL);
+		utl_super_free((void **)game->map.data_map);
+		free_data_texture(&game->colors, &game->texture);
+		error(COLORS, NULL, game, FALSE);
 	}
 	else
 		return (0);
@@ -89,11 +105,11 @@ int	define_data_map(t_game *game)
 	int		j;
 
 	j = 0;
-	while ((game->map[j] && check_textures(&game->textures) == 0) \
+	while ((game->map.map[j] && check_textures(&game->texture) == 0)
 		|| check_colors(&game->colors) == 0)
 	{
 		i = 0;
-		while (ctn_iswhitespace(game->map[j][i]))
+		while (ft_isspace(game->map.map[j][i]))
 			i++;
 		if (set_data_map(game, i, j) == 1)
 			return (1);

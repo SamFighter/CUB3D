@@ -3,165 +3,191 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fmontel <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: bcausseq <bcausseq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/10/09 10:51:03 by salabbe           #+#    #+#              #
-#    Updated: 2025/07/15 15:27:54 by fmontel          ###   ########.fr        #
+#    Created: 2024/10/01 22:18:57 by bcausseq          #+#    #+#              #
+#    Updated: 2025/12/13 19:07:43 by bcausseq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			:=	libft.a
+CC			= cc
 
-# **************************************************************************** #
-#                                 INGREDIENTS                                  #
-# **************************************************************************** #
+CFLAGS		= -Wall -Wextra -Werror -g
 
-MANDATORY		:=	get_next_line.c 				\
-					print_f/ft_printf.c 			\
-					print_f/ft_sideprintf.c 		\
-					print_f/fd_printf.c 			\
-					print_f/fd_sideprintf.c 		\
-					print_f/utl_printf.c 			\
-					visual/rep_colorstr.c			\
-					func_contain/ctn_chckchar.c		\
-					func_contain/ctn_isalnum.c		\
-					func_contain/ctn_isalpha.c		\
-					func_contain/ctn_isascii.c		\
-					func_contain/ctn_ischar.c		\
-					func_contain/ctn_isdigit.c		\
-					func_contain/ctn_isprint.c		\
-					func_contain/ctn_iswhitespace.c	\
-					func_contain/ctn_strchr.c		\
-					func_contain/ctn_strrchr.c		\
-					func_convert/cnv_atoi.c			\
-					func_convert/cnv_str.c			\
-					func_convert/cnv_sttoa.c		\
-					func_convert/cnv_itoa.c			\
-					func_memory/mem_bzero.c			\
-					func_memory/mem_calloc.c		\
-					func_memory/mem_chr.c			\
-					func_memory/mem_cmp.c			\
-					func_memory/mem_cpy.c			\
-					func_memory/mem_move.c			\
-					func_memory/mem_set.c			\
-					func_replacement/rep_atoa.c		\
-					func_replacement/rep_atoi.c		\
-					func_replacement/rep_ctoa.c		\
-					func_replacement/rep_ctoi.c		\
-					func_replacement/rep_ctonull.c	\
-					func_replacement/rep_ptonull.c	\
-					func_replacement/rep_tolower.c	\
-					func_replacement/rep_toupper.c	\
-					func_string/str_arrdup.c		\
-					func_string/str_arrrep.c		\
-					func_string/str_atoarr.c		\
-					func_string/str_cat.c			\
-					func_string/str_cmp.c			\
-					func_string/str_cpy.c			\
-					func_string/str_dup.c			\
-					func_string/str_duppart.c		\
-					func_string/str_iteri.c			\
-					func_string/str_join.c			\
-					func_string/str_llstr.c			\
-					func_string/str_len.c			\
-					func_string/str_mapi.c			\
-					func_string/str_rep.c			\
-					func_string/str_rarrdup.c		\
-					func_string/str_rarrrep.c		\
-					func_string/str_split.c			\
-					func_string/str_str.c			\
-					func_string/str_substr.c		\
-					func_string/str_trim.c			\
-					func_string/str_arrjoin.c		\
-					func_utility/utl_dbl_arrlen.c	\
-					func_utility/utl_getlen_line.c	\
-					func_utility/utl_int_len.c		\
-					func_utility/utl_putchar.c		\
-					func_utility/utl_putarrstr.c	\
-					func_utility/utl_putendl.c		\
-					func_utility/utl_putnbr.c		\
-					func_utility/utl_putstr.c		\
-					func_utility/utl_super_free.c	\
+INCLUDE		= includes
 
-M_OBJS			:=	$(MANDATORY:%.c=.build/%.o)
-DEPS			:=	$(M_OBJS:%.o=%.d)
+NAME		= libft.a
 
-CC				:=	cc
-CFLAGS			:=	-Wall -Wextra -Werror -g
-CPPFLAGS		:=	-MP -MMD -Ilibft/debug.h		\
-					-Ilibft/headers/func_cnv.h		\
-					-Ilibft/headers/func_ctn.h		\
-					-Ilibft/headers/func_mem.h		\
-					-Ilibft/headers/func_rep.h		\
-					-Ilibft/headers/func_str.h		\
-					-Ilibft/headers/func_utl.h		\
-					-Ilibft/headers/ft_printf.h		\
-					-Ilibft/headers/get_next_line.h	\
-					-Ilibft/headers/libft.h			\
+BUILD_DIR	= build
 
-# **************************************************************************** #
-#                                    TOOLS                                     #
-# **************************************************************************** #
+SRCS_DIRS	= char conversion io memory miscs string .
 
-MAKEFLAGS		+= --silent --no-print-directory
+SRCS		= ft_strlen.c\
+			  ft_strjoin.c\
+			  ft_calloc.c\
+			  ft_strcat.c\
+			  ft_strncmp.c\
+			  ft_bzero.c\
+			  ft_strdup.c\
+			  ft_strcpy.c\
+			  ft_split.c\
+			  ft_substr.c\
+			  ft_strlcpy.c\
+			  get_next_line.c\
+			  ft_random_name.c\
+			  ft_strchr.c\
+			  ft_strcmp.c\
+			  ft_strrchr.c\
+			  ft_count_word.c\
+			  ft_strndup.c\
+			  ft_strncpy.c\
+			  ft_itoa.c\
+			  ft_isupper.c\
+			  ft_islower.c\
+			  ft_isdigit.c\
+			  ft_isspace.c\
+			  ft_isalnum.c\
+			  ft_isalpha.c\
+			  ft_atoll.c\
+			  ft_putchar_fd.c\
+			  ft_putstr_fd.c\
+			  ft_putnbr_fd.c\
+			  ft_fprintf.c\
+			  ft_fprintf_conv.c\
+			  ft_fprintf_spe_cases_sup.c\
+			  ft_putnbr_add_fd.c\
+			  ft_isdigit_while.c\
+			  ft_atoi.c\
+			  utl_super_free.c\
+			  ctn_strchr.c\
+			  str_llstr.c
 
-# **************************************************************************** #
-#                                   RECIPES                                    #
-# **************************************************************************** #
+FULL_SRCS	= $(foreach src,$(SRCS), $(firstword $(foreach dir,$(SRCS_DIRS),$(wildcard $(dir)/$(src)))))
+
+OBJS		= $(patsubst %.c,$(BUILD_DIR)/%.o,$(FULL_SRCS))
+
+# ✨ Magical Colors & Styles ✨
+AURORA_PINK = \033[38;5;213m
+AURORA_PURPLE = \033[38;5;141m
+AURORA_BLUE = \033[38;5;75m
+AURORA_GREEN = \033[38;5;121m
+AURORA_YELLOW = \033[38;5;228m
+DREAMY_CYAN = \033[38;5;159m
+COSMIC_GOLD = \033[38;5;220m
+STARLIGHT = \033[38;5;231m
+MOONBEAM = \033[38;5;189m
+RESET = \033[0m
+BOLD = \033[1m
+DIM = \033[2m
+
+# Dream Animation Frames
+define dream_sequence
+	@printf "$(AURORA_PINK)$(BOLD)"
+	@echo "    ✦ ･ ｡  ✦   ･ ｡ ﾟ☆  ﾟ｡ ✦"
+	@echo "  ｡ ﾟ ☆ ｡  ✦ ･ ｡ ✦   ･ ｡ ﾟ☆ "
+	@sleep 0.3
+	@printf "$(AURORA_PURPLE)"
+	@echo "       ･ ｡ ﾟ☆    ✦ ･ ｡"
+	@echo "   ✦   ･ ｡ ﾟ☆  ﾟ｡ ✦ ･"
+	@sleep 0.3
+	@printf "$(AURORA_BLUE)"
+	@echo "    ☆  ﾟ｡ ✦ ･ ｡ ✦   ･"
+	@echo "  ﾟ☆  ﾟ｡ ✦    ･ ｡ ﾟ☆"
+	@printf "$(RESET)"
+endef
+
+define show_libft_dream
+	@echo "$(COSMIC_GOLD)$(BOLD)"
+	@echo "╭─────────────────────────────────────────────────────────╮"
+	@echo "│                                                         │"
+	@echo "│    $(AURORA_PINK)✧･ﾟ: *✧･ﾟ:* $(STARLIGHT)LIBFT DREAMS$(AURORA_PINK) *:･ﾟ✧*:･ﾟ✧                  │"
+	@echo "│                                                         │"
+	@echo "│      $(MOONBEAM)Where Functions Come to Life 🌙                    │"
+	@echo "│                                                         │"
+	@echo "╰─────────────────────────────────────────────────────────╯$(RESET)"
+	@echo ""
+	@echo "$(DREAMY_CYAN)         💎 Crafting magical functions... 💎$(RESET)"
+	@echo "$(DIM)$(AURORA_PURPLE)           ~ A library born from stardust ~$(RESET)"
+	@echo ""
+endef
+
+# Progress tracking
+TOTAL_SRCS = $(words $(SRCS))
+
+define magical_progress
+	@current_file=$(ls -1 *.o 2>/dev/null | wc -l); \
+	current_file=$(($current_file + 1)); \
+	printf "$(AURORA_GREEN)$(SPARKLE) Weaving magic into $(AURORA_YELLOW)$(notdir $<)$(AURORA_GREEN)... "; \
+	stars=$(($current_file * 20 / $(TOTAL_SRCS))); \
+	printf "$(COSMIC_GOLD)["; \
+	for i in $(seq 1 $stars); do printf "$(STAR)"; done; \
+	for i in $(seq $(($stars + 1)) 20); do printf "$(DIM)･$(RESET)"; done; \
+	printf "$(COSMIC_GOLD)] %d/%d $(RAINBOW)$(RESET)\n" $current_file $(TOTAL_SRCS)
+endef
+
+define constellation_complete
+	@echo ""
+	@echo "$(AURORA_PINK)$(BOLD)    ･ﾟ✧*:･ﾟ✧ $(STARLIGHT)CONSTELLATION COMPLETE$(AURORA_PINK) ✧ﾟ･: *✧ﾟ･$(RESET)"
+	@echo ""
+	@echo "$(DREAMY_CYAN)         💎 Your library shimmers with power 💎$(RESET)"
+	@echo "$(MOONBEAM)              $(NAME) has been born!$(RESET)"
+	@echo ""
+	$(call dream_sequence)
+	@echo ""
+endef
+
+define cleaning_ritual
+	@echo "$(AURORA_PURPLE)🌙 Performing cleansing ritual...$(RESET)"
+	@echo "$(DIM)   Banishing old enchantments...$(RESET)"
+	@sleep 0.5
+	@echo "$(AURORA_BLUE)✨ The workspace grows pure$(RESET)"
+endef
+
+define purification_complete
+	@echo "$(COSMIC_GOLD)💎 Purification complete - ready for new magic 💎$(RESET)"
+endef
 
 all: $(NAME)
 
-$(NAME): $(M_OBJS)
-	ar -rc $(NAME) $(M_OBJS)
-	@printf "%b" "$(BLUE)CREATED $(CYAN)$(NAME)\n"
+#$(BUILD_DIR):
+#	@mkdir -p $(addprefix $(BUILD_DIR)/, $(SRCS_DIRS))
 
-.build/%.o: %.c
-	mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $(CPPFLAGS) $< -o $@
-	
+$(BUILD_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	@printf "$(AURORA_GREEN)✨ Compiling $(AURORA_YELLOW)$(notdir $<)$(AURORA_GREEN)...$(RESET)\n"
+	@$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
+	@printf "$(COSMIC_GOLD)⭐ Success!$(RESET)\n"
 
--include $(DEPS)
+$(NAME): $(OBJS)
+	$(call show_libft_dream)
+	@echo "$(AURORA_YELLOW)$(BOLD)💎 Binding $(TOTAL_SRCS) functions into eternal harmony... 💎$(RESET)"
+	@ar rcs $(NAME) $(OBJS)
+	$(call constellation_complete)
 
 clean:
-	rm -rf .build
+	$(call cleaning_ritual)
+	@rm -rf $(BUILD_DIR)
+	@echo "$(AURORA_GREEN)✨ Object files dissolved into stardust$(RESET)"
 
 fclean: clean
-	rm -rf $(NAME)
+	@echo "$(AURORA_PURPLE)$(MOONBEAM) Complete purification in progress...$(RESET)"
+	@rm -f $(NAME)
+	$(call purification_complete)
 
-re:
-	$(MAKE) fclean
-	$(MAKE) all
+re: fclean all
 
-add-ons: $(AO_OBJS)
-	ar -rc $(NAME) $(AO_OBJS)
+# Secret dream mode (run with: make dream)
+dream:
+	@echo "$(AURORA_PINK)$(BOLD)"
+	@echo "    ✧･ﾟ: *✧･ﾟ:* ENTERING DREAM MODE *:･ﾟ✧*:･ﾟ✧"
+	@echo ""
+	@echo "$(DREAMY_CYAN)Your libft is more than code..."
+	@echo "$(MOONBEAM)It's a constellation of possibilities$(RESET)"
+	@echo ""
+	$(call dream_sequence)
+	@echo "$(COSMIC_GOLD)Functions flow like starlight through the void$(RESET)"
+	@echo "$(AURORA_BLUE)Each compilation is a spell cast into reality$(RESET)"
+	@echo ""
+	@echo "$(STARLIGHT)$(BOLD)✨ Keep dreaming, keep coding ✨$(RESET)"
 
-# **************************************************************************** #
-#                                    STYLE                                     #
-# **************************************************************************** #
-
-GREEN			:= \033[0;92m
-YELLOW			:= \033[0;93m
-BLUE			:= \033[0;94m
-CYAN			:= \033[0;96m
-OFF				:= \033[m
-
-header:
-	@printf "%b" "$(GREEN)"
-	@echo "		 _     _ _      __ _		"
-	@echo "		| |   (_) |__  / _| |_		"
-	@echo "		| |   | |  _ \| |_| __|		"
-	@echo "		| |___| | |_) |  _| |_ 		"
-	@echo "		|_____|_|____/|_|  \__|		"
-	@echo "		      by Salabbe            "
-	@echo
-	@printf "%b" "$(CYAN)CC:	$(YELLOW)$(CC)\n"
-	@printf "%b" "$(CYAN)CFlags:	$(YELLOW)$(CFLAGS)\n"
-	@printf "%b" "$(OFF)"
-	@echo
-
-# **************************************************************************** #
-#                                   SPECIAL                                    #
-# **************************************************************************** #
-
-.PHONY: all clean fclean re
-.DELETE_ON_ERROR:
+.PHONY: all clean fclean re dream

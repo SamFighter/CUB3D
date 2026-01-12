@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/18 21:05:29 by salabbe           #+#    #+#             */
+/*   Updated: 2025/12/18 21:05:34 by bcausseq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	check_textures(t_texture *textures)
 {
-	if (!textures->north)
+	if (!textures->no.path)
 		return (0);
-	if (!textures->south)
+	if (!textures->so.path)
 		return (0);
-	if (!textures->west)
+	if (!textures->we.path)
 		return (0);
-	if (!textures->east)
+	if (!textures->ea.path)
 		return (0);
 	return (1);
 }
@@ -43,7 +55,7 @@ void	skip_blank(char **map, int *start)
 	while (map[*start])
 	{
 		i = 0;
-		while (map[*start][i] && (map[*start][i] == ' ' \
+		while (map[*start][i] && (map[*start][i] == ' '
 			|| map[*start][i] == '\t'))
 			i++;
 		if (map[*start][i] != '\0')

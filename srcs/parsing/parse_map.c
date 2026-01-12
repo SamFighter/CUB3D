@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/18 21:05:17 by salabbe           #+#    #+#             */
+/*   Updated: 2025/12/22 21:40:05 by bcausseq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-char	**get_map(int fd)
+char	**get_map(int fd, int *width, t_game *game)
 {
 	char	**map;
 	char	*line;
@@ -9,17 +21,19 @@ char	**get_map(int fd)
 	line = get_next_line(fd);
 	if (line == NULL)
 	{
-		error(MAP, NULL);
+		error(MAP, NULL, game, FALSE);
 		return (NULL);
 	}
+	(*width) = ft_strlen(line);
 	tmp = get_next_line(fd);
 	while (tmp != NULL)
 	{
-		line = str_join(line, tmp);
-		free(tmp);
+		if ((int)ft_strlen(tmp) > (*width))
+			(*width) = ft_strlen(tmp);
+		line = ft_strjoin(line, tmp, 1, 1);
 		tmp = get_next_line(fd);
 	}
-	map = str_split(line, '\n');
+	map = ft_split(line, '\n');
 	free(line);
 	free(tmp);
 	return (map);
@@ -46,10 +60,10 @@ static int	map_closed(char **map, char *str, int x, int y)
 	{
 		if (ischarset("0NSWE", str[x]) == 1)
 		{
-			if (!map[y + 1] || x > (int)str_len(map[y + 1]) \
+			if (!map[y + 1] || x > (int)ft_strlen(map[y + 1])
 				|| ischarset("10NSWE", map[y + 1][x]) == 0)
 				return (1);
-			if (!map[y - 1] || x > (int)str_len(map[y - 1]) \
+			if (!map[y - 1] || x > (int)ft_strlen(map[y - 1])
 				|| ischarset("10NSWE", map[y - 1][x]) == 0)
 				return (1);
 			if (!map[y][x + 1] || ischarset("10NSWE", map[y][x + 1]) == 0)
@@ -77,7 +91,7 @@ static int	parse_map_content(char **map, int j)
 			return (1);
 		while (map[j][i])
 		{
-			if (map[j][i] == 'N' || map[j][i] == 'S' \
+			if (map[j][i] == 'N' || map[j][i] == 'S'
 				|| map[j][i] == 'W' || map[j][i] == 'E')
 				player++;
 			i++;
@@ -89,7 +103,7 @@ static int	parse_map_content(char **map, int j)
 	return (0);
 }
 
-char	**get_data_map(char **map, int start)
+char	**get_data_map(char **map, int start, int *height)
 {
 	char	**data;
 	int		j;
@@ -103,7 +117,7 @@ char	**get_data_map(char **map, int start)
 	j = 0;
 	while (map[start])
 	{
-		data[j] = str_substr(map[start], 0, str_len(map[start]));
+		data[j] = ft_substr(map[start], 0, ft_strlen(map[start]));
 		if (data[j] == NULL)
 		{
 			utl_super_free((void **)data);
@@ -112,6 +126,7 @@ char	**get_data_map(char **map, int start)
 		j++;
 		start++;
 	}
+	(*height) = j;
 	data[j] = NULL;
 	return (data);
 }
