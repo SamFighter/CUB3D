@@ -6,7 +6,7 @@
 #    By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/17 01:17:51 by bcausseq          #+#    #+#              #
-#    Updated: 2025/12/22 22:55:30 by bcausseq         ###   ########.fr        #
+#    Updated: 2026/01/13 17:37:22 by bcausseq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 CC 			= cc
@@ -26,27 +26,24 @@ MLX_PATH	= ./MLX
 MLX_INC		= $(MLX_PATH)/includes
 MLX			= $(MLX_PATH)/libmlx.so
 
-SRCS		= drawing.c\
-			drawing_utils.c\
-			func_to_throw.c\
+SRCS		= srcs/display/drawing.c\
+			srcs/display/drawing_utils.c\
+			srcs/display/load_textures.c\
 			srcs/init/init_colors.c\
 			srcs/init/init_data.c\
-			srcs/init/init_mlx.c\
-			srcs/init/init_player.c\
-			srcs/init/init_screen.c\
 			srcs/init/init_textures.c\
-			keys.c\
+			srcs/gameplay/keys.c\
 			main.c\
-			mlx.c\
-			movements.c\
-			srcs/parsing/parse_color.c\
-			srcs/parsing/parse_error.c\
-			srcs/parsing/parse_file.c\
-			srcs/parsing/parse_map.c\
-			srcs/parsing/parse_texture.c\
-			srcs/parsing/parse_utils.c\
-			player.c\
-			rays.c
+			srcs/display/mlx.c\
+			srcs/gameplay/movements.c\
+			srcs/parse/parse_color.c\
+			srcs/parse/parse_error.c\
+			srcs/parse/parse_file.c\
+			srcs/parse/parse_map.c\
+			srcs/parse/parse_texture.c\
+			srcs/parse/parse_utils.c\
+			srcs/gameplay/player.c\
+			srcs/display/rays.c
 
 OBJ_DIR		= build
 
