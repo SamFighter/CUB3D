@@ -43,7 +43,29 @@ SRCS		= srcs/display/drawing.c\
 			srcs/parse/parse_texture.c\
 			srcs/parse/parse_utils.c\
 			srcs/gameplay/player.c\
-			srcs/display/rays.c
+			srcs/display/rays.c\
+
+BONUS_SRCS	= srcs/display/drawing.c\
+			  srcs/display/drawing_utils.c\
+			  srcs/display/load_textures.c\
+			  srcs/init/init_colors.c\
+			  srcs/init/init_data.c\
+			  srcs/bonus/i_textures_bonus.c\
+			  srcs/gameplay/keys.c\
+			  main.c\
+			  srcs/display/mlx.c\
+			  srcs/gameplay/movements.c\
+			  srcs/parse/parse_color.c\
+			  srcs/parse/parse_error.c\
+			  srcs/parse/parse_file.c\
+			  srcs/bonus/p_map_bonus.c\
+			  srcs/bonus/p_texture_bonus.c\
+			  srcs/bonus/p_door_bonus.c\
+			  srcs/parse/parse_utils.c\
+			  srcs/gameplay/player.c\
+			  srcs/display/rays.c
+
+BONUS_OBJ	= $(addprefix $(OBJ_DIR)/bonus/,$(BONUS_SRCS:.c=.o))
 
 OBJ_DIR		= build
 
@@ -91,8 +113,18 @@ fclean:					clean
 	@make --no-print-directory -C $(LIBFT) fclean
 	#@make --no-print-directory -C $(MLX_PATH) fclean
 	@rm -f $(NAME)
+	@rm -f $(NAME) $(NAME)_bonus
 	@echo "$(GREEN)💀 Everything purged from Hell!$(RESET)"
 
 re:						fclean all
 
-.PHONY: all clean fclean re
+bonus: $(BONUS_OBJ) | $(MLX_PATH)
+	@make --no-print-directory -C $(LIBFT)
+	@make --no-print-directory -C $(MLX_PATH) -j
+	@$(CC) $(CFLAGS) -o $(NAME)_bonus $^ $(LIBFT_LIB) $(MLX) -lSDL2 -lm
+
+$(OBJ_DIR)/bonus/%.o: %.c | $(MLX_PATH)
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) -I$(LIBFT) -I$(HEADER) -I$(MLX_INC) -c $< -o $@
+
+.PHONY: all clean fclean re bonus

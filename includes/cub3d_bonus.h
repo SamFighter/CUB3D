@@ -94,6 +94,7 @@ typedef struct s_texture
 	t_data_text	so;
 	t_data_text	ea;
 	t_data_text	we;
+	t_data_text	door;
 }	t_texture;
 
 typedef struct s_map
@@ -247,5 +248,8 @@ int				ischarset(char *set, char c);
 void			skip_blank(char **map, int *start);
 int				count_lines(char **tab);
 int				check_textures_paths(t_texture *textures, t_game *game);
+
+int				check_door(t_texture *texture);
+int				set_data_all(t_game *game, int i, int j);
 
 #endif
