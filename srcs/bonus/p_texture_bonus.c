@@ -64,6 +64,8 @@ int	define_data_map(t_game *game)
 	int		j;
 
 	j = 0;
+	printf("TA MERE");
+	printf("ici : %s", game->map.map[j]);
 	while ((game->map.map[j] && check_textures(&game->texture) == 0)
 		|| check_colors(&game->colors) == 0 || check_door(&game->texture) == 0)
 	{
