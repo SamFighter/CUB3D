@@ -1,4 +1,4 @@
-// Copyright 2015-2025 The Khronos Group Inc.
+// Copyright 2015-2026 The Khronos Group Inc.
 //
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 //
@@ -13,10 +13,9 @@ module;
 
 #if !defined( VULKAN_HPP_CXX_MODULE_EXPERIMENTAL_WARNING )
 #  define VULKAN_HPP_CXX_MODULE_EXPERIMENTAL_WARNING \
-    "The Vulkan-Hpp C++ named module is experimental. " \
-  "It is subject to change without prior notice.\n" \
-  "To silence this warning, define the VULKAN_HPP_CXX_MODULE_EXPERIMENTAL_WARNING macro.\n\n" \
-  "For feedback, go to: https://github.com/KhronosGroup/Vulkan-Hpp/issues"
+    "\n\tThe Vulkan-Hpp C++ named module is experimental. It is subject to change without prior notice.\n" \
+  "\tTo silence this warning, define the VULKAN_HPP_CXX_MODULE_EXPERIMENTAL_WARNING macro.\n" \
+  "\tFor feedback, go to: https://github.com/KhronosGroup/Vulkan-Hpp/issues"
 
 VULKAN_HPP_COMPILE_WARNING( VULKAN_HPP_CXX_MODULE_EXPERIMENTAL_WARNING )
 #endif
@@ -28,7 +27,8 @@ VULKAN_HPP_COMPILE_WARNING( VULKAN_HPP_CXX_MODULE_EXPERIMENTAL_WARNING )
 #include <vulkan/vulkan_raii.hpp>
 #include <vulkan/vulkan_shared.hpp>
 
-export module vulkan_hpp;
+export module vulkan;
+export import :video;
 export import std;
 
 export namespace VULKAN_HPP_NAMESPACE
@@ -52,7 +52,6 @@ export namespace VULKAN_HPP_NAMESPACE
     using VULKAN_HPP_NAMESPACE::detail::DispatchLoaderStatic;
     using VULKAN_HPP_NAMESPACE::detail::getDispatchLoaderStatic;
 #endif /*VK_NO_PROTOTYPES*/
-    using VULKAN_HPP_NAMESAPCE::detail::isDispatchLoader;
     using VULKAN_HPP_NAMESPACE::detail::createResultValueType;
     using VULKAN_HPP_NAMESPACE::detail::resultCheck;
   }  // namespace detail
@@ -687,6 +686,14 @@ export namespace VULKAN_HPP_NAMESPACE
   //=== VK_AMD_memory_overallocation_behavior ===
   using VULKAN_HPP_NAMESPACE::MemoryOverallocationBehaviorAMD;
 
+  //=== VK_EXT_present_timing ===
+  using VULKAN_HPP_NAMESPACE::PastPresentationTimingFlagBitsEXT;
+  using VULKAN_HPP_NAMESPACE::PastPresentationTimingFlagsEXT;
+  using VULKAN_HPP_NAMESPACE::PresentStageFlagBitsEXT;
+  using VULKAN_HPP_NAMESPACE::PresentStageFlagsEXT;
+  using VULKAN_HPP_NAMESPACE::PresentTimingInfoFlagBitsEXT;
+  using VULKAN_HPP_NAMESPACE::PresentTimingInfoFlagsEXT;
+
   //=== VK_INTEL_performance_query ===
   using VULKAN_HPP_NAMESPACE::PerformanceConfigurationTypeINTEL;
   using VULKAN_HPP_NAMESPACE::PerformanceOverrideTypeINTEL;
@@ -1040,12 +1047,6 @@ export namespace VULKAN_HPP_NAMESPACE
   using VULKAN_HPP_NAMESPACE::SurfaceCreateFlagsOHOS;
 #endif /*VK_USE_PLATFORM_OHOS*/
 
-#if defined( VK_USE_PLATFORM_OHOS )
-  //=== VK_OHOS_native_buffer ===
-  using VULKAN_HPP_NAMESPACE::SwapchainImageUsageFlagBitsOHOS;
-  using VULKAN_HPP_NAMESPACE::SwapchainImageUsageFlagsOHOS;
-#endif /*VK_USE_PLATFORM_OHOS*/
-
   //=== VK_ARM_performance_counters_by_region ===
   using VULKAN_HPP_NAMESPACE::PerformanceCounterDescriptionFlagBitsARM;
   using VULKAN_HPP_NAMESPACE::PerformanceCounterDescriptionFlagsARM;
@@ -1104,6 +1105,7 @@ export namespace VULKAN_HPP_NAMESPACE
   using VULKAN_HPP_NAMESPACE::OutOfDeviceMemoryError;
   using VULKAN_HPP_NAMESPACE::OutOfHostMemoryError;
   using VULKAN_HPP_NAMESPACE::OutOfPoolMemoryError;
+  using VULKAN_HPP_NAMESPACE::PresentTimingQueueFullEXTError;
   using VULKAN_HPP_NAMESPACE::SurfaceLostKHRError;
   using VULKAN_HPP_NAMESPACE::SystemError;
   using VULKAN_HPP_NAMESPACE::TooManyObjectsError;
@@ -1894,6 +1896,10 @@ export namespace VULKAN_HPP_NAMESPACE
   using VULKAN_HPP_NAMESPACE::KHRTimelineSemaphoreExtensionName;
   using VULKAN_HPP_NAMESPACE::KHRTimelineSemaphoreSpecVersion;
 
+  //=== VK_EXT_present_timing ===
+  using VULKAN_HPP_NAMESPACE::EXTPresentTimingExtensionName;
+  using VULKAN_HPP_NAMESPACE::EXTPresentTimingSpecVersion;
+
   //=== VK_INTEL_shader_integer_functions2 ===
   using VULKAN_HPP_NAMESPACE::INTELShaderIntegerFunctions2ExtensionName;
   using VULKAN_HPP_NAMESPACE::INTELShaderIntegerFunctions2SpecVersion;
@@ -2151,6 +2157,10 @@ export namespace VULKAN_HPP_NAMESPACE
   //=== VK_EXT_custom_border_color ===
   using VULKAN_HPP_NAMESPACE::EXTCustomBorderColorExtensionName;
   using VULKAN_HPP_NAMESPACE::EXTCustomBorderColorSpecVersion;
+
+  //=== VK_EXT_texture_compression_astc_3d ===
+  using VULKAN_HPP_NAMESPACE::EXTTextureCompressionAstc3DExtensionName;
+  using VULKAN_HPP_NAMESPACE::EXTTextureCompressionAstc3DSpecVersion;
 
   //=== VK_GOOGLE_user_type ===
   using VULKAN_HPP_NAMESPACE::GOOGLEUserTypeExtensionName;
@@ -2914,12 +2924,6 @@ export namespace VULKAN_HPP_NAMESPACE
   using VULKAN_HPP_NAMESPACE::OHOSSurfaceSpecVersion;
 #endif /*VK_USE_PLATFORM_OHOS*/
 
-#if defined( VK_USE_PLATFORM_OHOS )
-  //=== VK_OHOS_native_buffer ===
-  using VULKAN_HPP_NAMESPACE::OHOSNativeBufferExtensionName;
-  using VULKAN_HPP_NAMESPACE::OHOSNativeBufferSpecVersion;
-#endif /*VK_USE_PLATFORM_OHOS*/
-
   //=== VK_HUAWEI_hdr_vivid ===
   using VULKAN_HPP_NAMESPACE::HUAWEIHdrVividExtensionName;
   using VULKAN_HPP_NAMESPACE::HUAWEIHdrVividSpecVersion;
@@ -2997,6 +3001,10 @@ export namespace VULKAN_HPP_NAMESPACE
   using VULKAN_HPP_NAMESPACE::KHRMaintenance10ExtensionName;
   using VULKAN_HPP_NAMESPACE::KHRMaintenance10SpecVersion;
 
+  //=== VK_EXT_shader_long_vector ===
+  using VULKAN_HPP_NAMESPACE::EXTShaderLongVectorExtensionName;
+  using VULKAN_HPP_NAMESPACE::EXTShaderLongVectorSpecVersion;
+
   //=== VK_SEC_pipeline_cache_incremental_mode ===
   using VULKAN_HPP_NAMESPACE::SECPipelineCacheIncrementalModeExtensionName;
   using VULKAN_HPP_NAMESPACE::SECPipelineCacheIncrementalModeSpecVersion;
@@ -3004,6 +3012,13 @@ export namespace VULKAN_HPP_NAMESPACE
   //=== VK_EXT_shader_uniform_buffer_unsized_array ===
   using VULKAN_HPP_NAMESPACE::EXTShaderUniformBufferUnsizedArrayExtensionName;
   using VULKAN_HPP_NAMESPACE::EXTShaderUniformBufferUnsizedArraySpecVersion;
+
+  //=== VK_NV_compute_occupancy_priority ===
+  using VULKAN_HPP_NAMESPACE::ComputeOccupancyPriorityHighNV;
+  using VULKAN_HPP_NAMESPACE::ComputeOccupancyPriorityLowNV;
+  using VULKAN_HPP_NAMESPACE::ComputeOccupancyPriorityNormalNV;
+  using VULKAN_HPP_NAMESPACE::NVComputeOccupancyPriorityExtensionName;
+  using VULKAN_HPP_NAMESPACE::NVComputeOccupancyPrioritySpecVersion;
 
   //========================
   //=== CONSTEXPR VALUEs ===
@@ -4163,6 +4178,19 @@ export namespace VULKAN_HPP_NAMESPACE
   using VULKAN_HPP_NAMESPACE::QueueFamilyCheckpointProperties2NV;
   using VULKAN_HPP_NAMESPACE::QueueFamilyCheckpointPropertiesNV;
 
+  //=== VK_EXT_present_timing ===
+  using VULKAN_HPP_NAMESPACE::PastPresentationTimingEXT;
+  using VULKAN_HPP_NAMESPACE::PastPresentationTimingInfoEXT;
+  using VULKAN_HPP_NAMESPACE::PastPresentationTimingPropertiesEXT;
+  using VULKAN_HPP_NAMESPACE::PhysicalDevicePresentTimingFeaturesEXT;
+  using VULKAN_HPP_NAMESPACE::PresentStageTimeEXT;
+  using VULKAN_HPP_NAMESPACE::PresentTimingInfoEXT;
+  using VULKAN_HPP_NAMESPACE::PresentTimingsInfoEXT;
+  using VULKAN_HPP_NAMESPACE::PresentTimingSurfaceCapabilitiesEXT;
+  using VULKAN_HPP_NAMESPACE::SwapchainCalibratedTimestampInfoEXT;
+  using VULKAN_HPP_NAMESPACE::SwapchainTimeDomainPropertiesEXT;
+  using VULKAN_HPP_NAMESPACE::SwapchainTimingPropertiesEXT;
+
   //=== VK_INTEL_shader_integer_functions2 ===
   using VULKAN_HPP_NAMESPACE::PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL;
 
@@ -4339,6 +4367,9 @@ export namespace VULKAN_HPP_NAMESPACE
   using VULKAN_HPP_NAMESPACE::PhysicalDeviceCustomBorderColorFeaturesEXT;
   using VULKAN_HPP_NAMESPACE::PhysicalDeviceCustomBorderColorPropertiesEXT;
   using VULKAN_HPP_NAMESPACE::SamplerCustomBorderColorCreateInfoEXT;
+
+  //=== VK_EXT_texture_compression_astc_3d ===
+  using VULKAN_HPP_NAMESPACE::PhysicalDeviceTextureCompressionASTC3DFeaturesEXT;
 
   //=== VK_KHR_pipeline_library ===
   using VULKAN_HPP_NAMESPACE::PipelineLibraryCreateInfoKHR;
@@ -4871,6 +4902,7 @@ export namespace VULKAN_HPP_NAMESPACE
   using VULKAN_HPP_NAMESPACE::PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM;
 
   //=== VK_NV_ray_tracing_invocation_reorder ===
+  using VULKAN_HPP_NAMESPACE::PhysicalDeviceRayTracingInvocationReorderFeaturesNV;
   using VULKAN_HPP_NAMESPACE::PhysicalDeviceRayTracingInvocationReorderPropertiesNV;
 
   //=== VK_NV_cooperative_vector ===
@@ -5194,7 +5226,6 @@ export namespace VULKAN_HPP_NAMESPACE
 
   //=== VK_EXT_ray_tracing_invocation_reorder ===
   using VULKAN_HPP_NAMESPACE::PhysicalDeviceRayTracingInvocationReorderFeaturesEXT;
-  using VULKAN_HPP_NAMESPACE::PhysicalDeviceRayTracingInvocationReorderFeaturesNV;
   using VULKAN_HPP_NAMESPACE::PhysicalDeviceRayTracingInvocationReorderPropertiesEXT;
 
   //=== VK_EXT_depth_clamp_control ===
@@ -5216,13 +5247,6 @@ export namespace VULKAN_HPP_NAMESPACE
 #if defined( VK_USE_PLATFORM_OHOS )
   //=== VK_OHOS_surface ===
   using VULKAN_HPP_NAMESPACE::SurfaceCreateInfoOHOS;
-#endif /*VK_USE_PLATFORM_OHOS*/
-
-#if defined( VK_USE_PLATFORM_OHOS )
-  //=== VK_OHOS_native_buffer ===
-  using VULKAN_HPP_NAMESPACE::NativeBufferOHOS;
-  using VULKAN_HPP_NAMESPACE::PhysicalDevicePresentationPropertiesOHOS;
-  using VULKAN_HPP_NAMESPACE::SwapchainImageCreateInfoOHOS;
 #endif /*VK_USE_PLATFORM_OHOS*/
 
   //=== VK_HUAWEI_hdr_vivid ===
@@ -5314,11 +5338,19 @@ export namespace VULKAN_HPP_NAMESPACE
   using VULKAN_HPP_NAMESPACE::RenderingEndInfoKHR;
   using VULKAN_HPP_NAMESPACE::ResolveImageModeInfoKHR;
 
+  //=== VK_EXT_shader_long_vector ===
+  using VULKAN_HPP_NAMESPACE::PhysicalDeviceShaderLongVectorFeaturesEXT;
+  using VULKAN_HPP_NAMESPACE::PhysicalDeviceShaderLongVectorPropertiesEXT;
+
   //=== VK_SEC_pipeline_cache_incremental_mode ===
   using VULKAN_HPP_NAMESPACE::PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC;
 
   //=== VK_EXT_shader_uniform_buffer_unsized_array ===
   using VULKAN_HPP_NAMESPACE::PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT;
+
+  //=== VK_NV_compute_occupancy_priority ===
+  using VULKAN_HPP_NAMESPACE::ComputeOccupancyPriorityParametersNV;
+  using VULKAN_HPP_NAMESPACE::PhysicalDeviceComputeOccupancyPriorityFeaturesNV;
 
   //===============
   //=== HANDLEs ===
@@ -7606,6 +7638,30 @@ export namespace std
   template <>
   struct hash<VULKAN_HPP_NAMESPACE::CheckpointData2NV>;
 
+  //=== VK_EXT_present_timing ===
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PhysicalDevicePresentTimingFeaturesEXT>;
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PresentTimingSurfaceCapabilitiesEXT>;
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::SwapchainCalibratedTimestampInfoEXT>;
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::SwapchainTimingPropertiesEXT>;
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::SwapchainTimeDomainPropertiesEXT>;
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PastPresentationTimingInfoEXT>;
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PastPresentationTimingPropertiesEXT>;
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PastPresentationTimingEXT>;
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PresentTimingsInfoEXT>;
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PresentTimingInfoEXT>;
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PresentStageTimeEXT>;
+
   //=== VK_INTEL_shader_integer_functions2 ===
   template <>
   struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL>;
@@ -7871,6 +7927,10 @@ export namespace std
   struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceCustomBorderColorPropertiesEXT>;
   template <>
   struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceCustomBorderColorFeaturesEXT>;
+
+  //=== VK_EXT_texture_compression_astc_3d ===
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceTextureCompressionASTC3DFeaturesEXT>;
 
   //=== VK_KHR_pipeline_library ===
   template <>
@@ -8709,6 +8769,8 @@ export namespace std
   //=== VK_NV_ray_tracing_invocation_reorder ===
   template <>
   struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceRayTracingInvocationReorderPropertiesNV>;
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceRayTracingInvocationReorderFeaturesNV>;
 
   //=== VK_NV_cooperative_vector ===
   template <>
@@ -9268,16 +9330,6 @@ export namespace std
   struct hash<VULKAN_HPP_NAMESPACE::SurfaceCreateInfoOHOS>;
 #endif /*VK_USE_PLATFORM_OHOS*/
 
-#if defined( VK_USE_PLATFORM_OHOS )
-  //=== VK_OHOS_native_buffer ===
-  template <>
-  struct hash<VULKAN_HPP_NAMESPACE::NativeBufferOHOS>;
-  template <>
-  struct hash<VULKAN_HPP_NAMESPACE::SwapchainImageCreateInfoOHOS>;
-  template <>
-  struct hash<VULKAN_HPP_NAMESPACE::PhysicalDevicePresentationPropertiesOHOS>;
-#endif /*VK_USE_PLATFORM_OHOS*/
-
   //=== VK_HUAWEI_hdr_vivid ===
   template <>
   struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceHdrVividFeaturesHUAWEI>;
@@ -9400,6 +9452,12 @@ export namespace std
   template <>
   struct hash<VULKAN_HPP_NAMESPACE::ResolveImageModeInfoKHR>;
 
+  //=== VK_EXT_shader_long_vector ===
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceShaderLongVectorFeaturesEXT>;
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceShaderLongVectorPropertiesEXT>;
+
   //=== VK_SEC_pipeline_cache_incremental_mode ===
   template <>
   struct hash<VULKAN_HPP_NAMESPACE::PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC>;
@@ -9407,6 +9465,12 @@ export namespace std
   //=== VK_EXT_shader_uniform_buffer_unsized_array ===
   template <>
   struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT>;
+
+  //=== VK_NV_compute_occupancy_priority ===
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::ComputeOccupancyPriorityParametersNV>;
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceComputeOccupancyPriorityFeaturesNV>;
 
   //=================================================================
   //=== Required exports for VULKAN_HPP_NAMESPACE::StructureChain ===
@@ -10088,6 +10152,12 @@ export
   using ::PFN_vkSignalSemaphoreKHR;
   using ::PFN_vkWaitSemaphoresKHR;
 
+  //=== VK_EXT_present_timing ===
+  using ::PFN_vkGetPastPresentationTimingEXT;
+  using ::PFN_vkGetSwapchainTimeDomainPropertiesEXT;
+  using ::PFN_vkGetSwapchainTimingPropertiesEXT;
+  using ::PFN_vkSetSwapchainPresentTimingQueueSizeEXT;
+
   //=== VK_INTEL_performance_query ===
   using ::PFN_vkAcquirePerformanceConfigurationINTEL;
   using ::PFN_vkCmdSetPerformanceMarkerINTEL;
@@ -10587,13 +10657,6 @@ export
   using ::PFN_vkCreateSurfaceOHOS;
 #endif /*VK_USE_PLATFORM_OHOS*/
 
-#if defined( VK_USE_PLATFORM_OHOS )
-  //=== VK_OHOS_native_buffer ===
-  using ::PFN_vkAcquireImageOHOS;
-  using ::PFN_vkGetSwapchainGrallocUsageOHOS;
-  using ::PFN_vkQueueSignalReleaseImageOHOS;
-#endif /*VK_USE_PLATFORM_OHOS*/
-
   //=== VK_NV_cooperative_matrix2 ===
   using ::PFN_vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV;
 
@@ -10614,4 +10677,7 @@ export
 
   //=== VK_KHR_maintenance10 ===
   using ::PFN_vkCmdEndRendering2KHR;
+
+  //=== VK_NV_compute_occupancy_priority ===
+  using ::PFN_vkCmdSetComputeOccupancyPriorityNV;
 }

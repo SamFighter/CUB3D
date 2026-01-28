@@ -3,7 +3,7 @@
     <div align="center">
         <a href="https://github.com/seekrs/MacroLibX/actions/workflows/linux_clang.yml"><img src="https://github.com/seekrs/MacroLibX/actions/workflows/linux_clang.yml/badge.svg"></a>
         <a href="https://github.com/seekrs/MacroLibX/actions/workflows/linux_gcc.yml"><img src="https://github.com/seekrs/MacroLibX/actions/workflows/linux_gcc.yml/badge.svg"></a>
-        <a href="https://github.com/seekrs/MacroLibX/actions/workflows/macos_x86.yml"><img src="https://github.com/seekrs/MacroLibX/actions/workflows/macos_x86.yml/badge.svg"></a>
+        <a href="https://github.com/seekrs/MacroLibX/actions/workflows/macos.yml"><img src="https://github.com/seekrs/MacroLibX/actions/workflows/macos.yml/badge.svg"></a>
     </div>
     <div align="center">
         <a href="https://github.com/seekrs/MacroLibX/actions/workflows/windows.yml"><img src="https://github.com/seekrs/MacroLibX/actions/workflows/windows.yml/badge.svg"></a>
@@ -102,9 +102,6 @@ MacroLibX has a strong safety support, mainly by checking every pointer that you
 
 ### 🛠️ Set the toolchain
 If you want to use `GCC` to build the mlx you can use `make TOOLCHAIN=gcc`
-
-### 🖥️ Force the integrated GPU (not recommended)
-You can force the mlx to use your integrated GPU by using `make FORCE_INTEGRATED_GPU=true`. Note that there are a lot of chances that your application crashes by using that.
 
 ### 💽 Dump the graphics memory
 The mlx can dump it's graphics memory use to json files every two seconds by enabling this option `make GRAPHICS_MEMORY_DUMP=true`.

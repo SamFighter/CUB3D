@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_texture.c                                    :+:      :+:    :+:   */
+/*   p_texture_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 19:02:35 by salabbe           #+#    #+#             */
-/*   Updated: 2025/12/22 21:40:53 by bcausseq         ###   ########.fr       */
+/*   Updated: 2026/01/22 17:51:16 by bcausseq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ int	define_data_map(t_game *game)
 	int		j;
 
 	j = 0;
-	printf("TA MERE");
-	printf("ici : %s", game->map.map[j]);
 	while ((game->map.map[j] && check_textures(&game->texture) == 0)
 		|| check_colors(&game->colors) == 0 || check_door(&game->texture) == 0)
 	{

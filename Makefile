@@ -6,7 +6,7 @@
 #    By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/17 01:17:51 by bcausseq          #+#    #+#              #
-#    Updated: 2026/01/13 17:37:22 by bcausseq         ###   ########.fr        #
+#    Updated: 2026/01/24 21:22:52 by bcausseq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 CC 			= cc
@@ -26,44 +26,46 @@ MLX_PATH	= ./MLX
 MLX_INC		= $(MLX_PATH)/includes
 MLX			= $(MLX_PATH)/libmlx.so
 
-SRCS		= srcs/display/drawing.c\
-			srcs/display/drawing_utils.c\
-			srcs/display/load_textures.c\
-			srcs/init/init_colors.c\
-			srcs/init/init_data.c\
-			srcs/init/init_textures.c\
-			srcs/gameplay/keys.c\
+SRCS		= srcs/manda/display/drawing.c\
+			srcs/manda/display/drawing_utils.c\
+			srcs/manda/display/load_textures.c\
+			srcs/manda/init/init_colors.c\
+			srcs/manda/init/init_data.c\
+			srcs/manda/init/init_textures.c\
+			srcs/manda/gameplay/keys.c\
 			main.c\
-			srcs/display/mlx.c\
-			srcs/gameplay/movements.c\
-			srcs/parse/parse_color.c\
-			srcs/parse/parse_error.c\
-			srcs/parse/parse_file.c\
-			srcs/parse/parse_map.c\
-			srcs/parse/parse_texture.c\
-			srcs/parse/parse_utils.c\
-			srcs/gameplay/player.c\
-			srcs/display/rays.c\
+			srcs/manda/display/mlx.c\
+			srcs/manda/gameplay/movements.c\
+			srcs/manda/parse/parse_color.c\
+			srcs/manda/parse/parse_error.c\
+			srcs/manda/parse/parse_file.c\
+			srcs/manda/parse/parse_map.c\
+			srcs/manda/parse/parse_texture.c\
+			srcs/manda/parse/parse_utils.c\
+			srcs/manda/gameplay/player.c\
+			srcs/manda/display/rays.c\
 
-BONUS_SRCS	= srcs/display/drawing.c\
-			  srcs/display/drawing_utils.c\
-			  srcs/display/load_textures.c\
-			  srcs/init/init_colors.c\
-			  srcs/init/init_data.c\
+BONUS_SRCS	= srcs/bonus/display/drawing.c\
 			  srcs/bonus/i_textures_bonus.c\
-			  srcs/gameplay/keys.c\
 			  main.c\
-			  srcs/display/mlx.c\
-			  srcs/gameplay/movements.c\
-			  srcs/parse/parse_color.c\
-			  srcs/parse/parse_error.c\
-			  srcs/parse/parse_file.c\
+			  srcs/bonus/display/drawing_utils.c\
+			  srcs/bonus/display/load_textures.c\
+			  srcs/bonus/init/init_colors.c\
+			  srcs/bonus/init/init_data.c\
+			  srcs/bonus/gameplay/keys.c\
+			  srcs/bonus/display/mlx.c\
+			  srcs/bonus/gameplay/movements.c\
+			  srcs/bonus/parse/parse_color.c\
+			  srcs/bonus/parse/parse_error.c\
+			  srcs/bonus/parse/parse_file.c\
 			  srcs/bonus/p_map_bonus.c\
 			  srcs/bonus/p_texture_bonus.c\
 			  srcs/bonus/p_door_bonus.c\
-			  srcs/parse/parse_utils.c\
-			  srcs/gameplay/player.c\
-			  srcs/display/rays.c
+			  srcs/bonus/parse/parse_utils.c\
+			  srcs/bonus/gameplay/player.c\
+			  srcs/bonus/display/rays.c\
+			  srcs/bonus/mouse.c\
+			  srcs/bonus/menu.c
 
 BONUS_OBJ	= $(addprefix $(OBJ_DIR)/bonus/,$(BONUS_SRCS:.c=.o))
 

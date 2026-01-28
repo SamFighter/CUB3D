@@ -1,4 +1,4 @@
-// Copyright 2015-2025 The Khronos Group Inc.
+// Copyright 2015-2026 The Khronos Group Inc.
 //
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 //
@@ -282,6 +282,7 @@ namespace VULKAN_HPP_NAMESPACE
     eErrorVideoProfileCodecNotSupportedKHR       = VK_ERROR_VIDEO_PROFILE_CODEC_NOT_SUPPORTED_KHR,
     eErrorVideoStdVersionNotSupportedKHR         = VK_ERROR_VIDEO_STD_VERSION_NOT_SUPPORTED_KHR,
     eErrorInvalidDrmFormatModifierPlaneLayoutEXT = VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT,
+    eErrorPresentTimingQueueFullEXT              = VK_ERROR_PRESENT_TIMING_QUEUE_FULL_EXT,
 #if defined( VK_USE_PLATFORM_WIN32_KHR )
     eErrorFullScreenExclusiveModeLostEXT = VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT,
 #endif /*VK_USE_PLATFORM_WIN32_KHR*/
@@ -1085,6 +1086,16 @@ namespace VULKAN_HPP_NAMESPACE
     eQueueFamilyCheckpointPropertiesNV                  = VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV,
     eQueueFamilyCheckpointProperties2NV                 = VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV,
     eCheckpointData2NV                                  = VK_STRUCTURE_TYPE_CHECKPOINT_DATA_2_NV,
+    ePhysicalDevicePresentTimingFeaturesEXT             = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_TIMING_FEATURES_EXT,
+    eSwapchainTimingPropertiesEXT                       = VK_STRUCTURE_TYPE_SWAPCHAIN_TIMING_PROPERTIES_EXT,
+    eSwapchainTimeDomainPropertiesEXT                   = VK_STRUCTURE_TYPE_SWAPCHAIN_TIME_DOMAIN_PROPERTIES_EXT,
+    ePresentTimingsInfoEXT                              = VK_STRUCTURE_TYPE_PRESENT_TIMINGS_INFO_EXT,
+    ePresentTimingInfoEXT                               = VK_STRUCTURE_TYPE_PRESENT_TIMING_INFO_EXT,
+    ePastPresentationTimingInfoEXT                      = VK_STRUCTURE_TYPE_PAST_PRESENTATION_TIMING_INFO_EXT,
+    ePastPresentationTimingPropertiesEXT                = VK_STRUCTURE_TYPE_PAST_PRESENTATION_TIMING_PROPERTIES_EXT,
+    ePastPresentationTimingEXT                          = VK_STRUCTURE_TYPE_PAST_PRESENTATION_TIMING_EXT,
+    ePresentTimingSurfaceCapabilitiesEXT                = VK_STRUCTURE_TYPE_PRESENT_TIMING_SURFACE_CAPABILITIES_EXT,
+    eSwapchainCalibratedTimestampInfoEXT                = VK_STRUCTURE_TYPE_SWAPCHAIN_CALIBRATED_TIMESTAMP_INFO_EXT,
     ePhysicalDeviceShaderIntegerFunctions2FeaturesINTEL = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL,
     eQueryPoolPerformanceQueryCreateInfoINTEL           = VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL,
     eQueryPoolCreateInfoINTEL                           = VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO_INTEL,
@@ -1178,6 +1189,7 @@ namespace VULKAN_HPP_NAMESPACE
     eSamplerCustomBorderColorCreateInfoEXT                 = VK_STRUCTURE_TYPE_SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT,
     ePhysicalDeviceCustomBorderColorPropertiesEXT          = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT,
     ePhysicalDeviceCustomBorderColorFeaturesEXT            = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT,
+    ePhysicalDeviceTextureCompressionAstc3DFeaturesEXT     = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_3D_FEATURES_EXT,
     ePipelineLibraryCreateInfoKHR                          = VK_STRUCTURE_TYPE_PIPELINE_LIBRARY_CREATE_INFO_KHR,
     ePhysicalDevicePresentBarrierFeaturesNV                = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_BARRIER_FEATURES_NV,
     eSurfaceCapabilitiesPresentBarrierNV                   = VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_PRESENT_BARRIER_NV,
@@ -1491,6 +1503,7 @@ namespace VULKAN_HPP_NAMESPACE
     eReleaseSwapchainImagesInfoKHR                                = VK_STRUCTURE_TYPE_RELEASE_SWAPCHAIN_IMAGES_INFO_KHR,
     eReleaseSwapchainImagesInfoEXT                                = VK_STRUCTURE_TYPE_RELEASE_SWAPCHAIN_IMAGES_INFO_EXT,
     ePhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM          = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM,
+    ePhysicalDeviceRayTracingInvocationReorderFeaturesNV          = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_NV,
     ePhysicalDeviceRayTracingInvocationReorderPropertiesNV        = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_NV,
     ePhysicalDeviceCooperativeVectorFeaturesNV                    = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_VECTOR_FEATURES_NV,
     ePhysicalDeviceCooperativeVectorPropertiesNV                  = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_VECTOR_PROPERTIES_NV,
@@ -1677,7 +1690,6 @@ namespace VULKAN_HPP_NAMESPACE
     eImageAlignmentControlCreateInfoMESA                        = VK_STRUCTURE_TYPE_IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA,
     ePhysicalDeviceShaderFmaFeaturesKHR                         = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR,
     ePhysicalDeviceRayTracingInvocationReorderFeaturesEXT       = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_EXT,
-    ePhysicalDeviceRayTracingInvocationReorderFeaturesNV        = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_NV,
     ePhysicalDeviceRayTracingInvocationReorderPropertiesEXT     = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_EXT,
     ePhysicalDeviceDepthClampControlFeaturesEXT                 = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT,
     ePipelineViewportDepthClampControlCreateInfoEXT             = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_DEPTH_CLAMP_CONTROL_CREATE_INFO_EXT,
@@ -1689,10 +1701,7 @@ namespace VULKAN_HPP_NAMESPACE
     eVideoDecodeH265InlineSessionParametersInfoKHR              = VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_INLINE_SESSION_PARAMETERS_INFO_KHR,
     eVideoDecodeAv1InlineSessionParametersInfoKHR               = VK_STRUCTURE_TYPE_VIDEO_DECODE_AV1_INLINE_SESSION_PARAMETERS_INFO_KHR,
 #if defined( VK_USE_PLATFORM_OHOS )
-    eSurfaceCreateInfoOHOS                    = VK_STRUCTURE_TYPE_SURFACE_CREATE_INFO_OHOS,
-    eNativeBufferOHOS                         = VK_STRUCTURE_TYPE_NATIVE_BUFFER_OHOS,
-    eSwapchainImageCreateInfoOHOS             = VK_STRUCTURE_TYPE_SWAPCHAIN_IMAGE_CREATE_INFO_OHOS,
-    ePhysicalDevicePresentationPropertiesOHOS = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENTATION_PROPERTIES_OHOS,
+    eSurfaceCreateInfoOHOS = VK_STRUCTURE_TYPE_SURFACE_CREATE_INFO_OHOS,
 #endif /*VK_USE_PLATFORM_OHOS*/
     ePhysicalDeviceHdrVividFeaturesHUAWEI             = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI,
     eHdrVividDynamicMetadataHUAWEI                    = VK_STRUCTURE_TYPE_HDR_VIVID_DYNAMIC_METADATA_HUAWEI,
@@ -1746,8 +1755,12 @@ namespace VULKAN_HPP_NAMESPACE
     eRenderingEndInfoKHR                                      = VK_STRUCTURE_TYPE_RENDERING_END_INFO_KHR,
     eRenderingEndInfoEXT                                      = VK_STRUCTURE_TYPE_RENDERING_END_INFO_EXT,
     eResolveImageModeInfoKHR                                  = VK_STRUCTURE_TYPE_RESOLVE_IMAGE_MODE_INFO_KHR,
+    ePhysicalDeviceShaderLongVectorFeaturesEXT                = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_LONG_VECTOR_FEATURES_EXT,
+    ePhysicalDeviceShaderLongVectorPropertiesEXT              = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_LONG_VECTOR_PROPERTIES_EXT,
     ePhysicalDevicePipelineCacheIncrementalModeFeaturesSEC    = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC,
-    ePhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_FEATURES_EXT
+    ePhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_FEATURES_EXT,
+    eComputeOccupancyPriorityParametersNV                     = VK_STRUCTURE_TYPE_COMPUTE_OCCUPANCY_PRIORITY_PARAMETERS_NV,
+    ePhysicalDeviceComputeOccupancyPriorityFeaturesNV         = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COMPUTE_OCCUPANCY_PRIORITY_FEATURES_NV
   };
 
   // wrapper class for enum VkObjectType, see https://registry.khronos.org/vulkan/specs/latest/man/html/VkObjectType.html
@@ -2141,6 +2154,36 @@ namespace VULKAN_HPP_NAMESPACE
     ePvrtc14BppSrgbBlockIMG                  = VK_FORMAT_PVRTC1_4BPP_SRGB_BLOCK_IMG,
     ePvrtc22BppSrgbBlockIMG                  = VK_FORMAT_PVRTC2_2BPP_SRGB_BLOCK_IMG,
     ePvrtc24BppSrgbBlockIMG                  = VK_FORMAT_PVRTC2_4BPP_SRGB_BLOCK_IMG,
+    eAstc3x3x3UnormBlockEXT                  = VK_FORMAT_ASTC_3x3x3_UNORM_BLOCK_EXT,
+    eAstc3x3x3SrgbBlockEXT                   = VK_FORMAT_ASTC_3x3x3_SRGB_BLOCK_EXT,
+    eAstc3x3x3SfloatBlockEXT                 = VK_FORMAT_ASTC_3x3x3_SFLOAT_BLOCK_EXT,
+    eAstc4x3x3UnormBlockEXT                  = VK_FORMAT_ASTC_4x3x3_UNORM_BLOCK_EXT,
+    eAstc4x3x3SrgbBlockEXT                   = VK_FORMAT_ASTC_4x3x3_SRGB_BLOCK_EXT,
+    eAstc4x3x3SfloatBlockEXT                 = VK_FORMAT_ASTC_4x3x3_SFLOAT_BLOCK_EXT,
+    eAstc4x4x3UnormBlockEXT                  = VK_FORMAT_ASTC_4x4x3_UNORM_BLOCK_EXT,
+    eAstc4x4x3SrgbBlockEXT                   = VK_FORMAT_ASTC_4x4x3_SRGB_BLOCK_EXT,
+    eAstc4x4x3SfloatBlockEXT                 = VK_FORMAT_ASTC_4x4x3_SFLOAT_BLOCK_EXT,
+    eAstc4x4x4UnormBlockEXT                  = VK_FORMAT_ASTC_4x4x4_UNORM_BLOCK_EXT,
+    eAstc4x4x4SrgbBlockEXT                   = VK_FORMAT_ASTC_4x4x4_SRGB_BLOCK_EXT,
+    eAstc4x4x4SfloatBlockEXT                 = VK_FORMAT_ASTC_4x4x4_SFLOAT_BLOCK_EXT,
+    eAstc5x4x4UnormBlockEXT                  = VK_FORMAT_ASTC_5x4x4_UNORM_BLOCK_EXT,
+    eAstc5x4x4SrgbBlockEXT                   = VK_FORMAT_ASTC_5x4x4_SRGB_BLOCK_EXT,
+    eAstc5x4x4SfloatBlockEXT                 = VK_FORMAT_ASTC_5x4x4_SFLOAT_BLOCK_EXT,
+    eAstc5x5x4UnormBlockEXT                  = VK_FORMAT_ASTC_5x5x4_UNORM_BLOCK_EXT,
+    eAstc5x5x4SrgbBlockEXT                   = VK_FORMAT_ASTC_5x5x4_SRGB_BLOCK_EXT,
+    eAstc5x5x4SfloatBlockEXT                 = VK_FORMAT_ASTC_5x5x4_SFLOAT_BLOCK_EXT,
+    eAstc5x5x5UnormBlockEXT                  = VK_FORMAT_ASTC_5x5x5_UNORM_BLOCK_EXT,
+    eAstc5x5x5SrgbBlockEXT                   = VK_FORMAT_ASTC_5x5x5_SRGB_BLOCK_EXT,
+    eAstc5x5x5SfloatBlockEXT                 = VK_FORMAT_ASTC_5x5x5_SFLOAT_BLOCK_EXT,
+    eAstc6x5x5UnormBlockEXT                  = VK_FORMAT_ASTC_6x5x5_UNORM_BLOCK_EXT,
+    eAstc6x5x5SrgbBlockEXT                   = VK_FORMAT_ASTC_6x5x5_SRGB_BLOCK_EXT,
+    eAstc6x5x5SfloatBlockEXT                 = VK_FORMAT_ASTC_6x5x5_SFLOAT_BLOCK_EXT,
+    eAstc6x6x5UnormBlockEXT                  = VK_FORMAT_ASTC_6x6x5_UNORM_BLOCK_EXT,
+    eAstc6x6x5SrgbBlockEXT                   = VK_FORMAT_ASTC_6x6x5_SRGB_BLOCK_EXT,
+    eAstc6x6x5SfloatBlockEXT                 = VK_FORMAT_ASTC_6x6x5_SFLOAT_BLOCK_EXT,
+    eAstc6x6x6UnormBlockEXT                  = VK_FORMAT_ASTC_6x6x6_UNORM_BLOCK_EXT,
+    eAstc6x6x6SrgbBlockEXT                   = VK_FORMAT_ASTC_6x6x6_SRGB_BLOCK_EXT,
+    eAstc6x6x6SfloatBlockEXT                 = VK_FORMAT_ASTC_6x6x6_SFLOAT_BLOCK_EXT,
     eR8BoolARM                               = VK_FORMAT_R8_BOOL_ARM,
     eR16G16Sfixed5NV                         = VK_FORMAT_R16G16_SFIXED5_NV,
     eR16G16S105NV                            = VK_FORMAT_R16G16_S10_5_NV,
@@ -5543,6 +5586,7 @@ namespace VULKAN_HPP_NAMESPACE
     eSplitInstanceBindRegions    = VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR,
     eProtected                   = VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR,
     eMutableFormat               = VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR,
+    ePresentTimingEXT            = VK_SWAPCHAIN_CREATE_PRESENT_TIMING_BIT_EXT,
     ePresentId2                  = VK_SWAPCHAIN_CREATE_PRESENT_ID_2_BIT_KHR,
     ePresentWait2                = VK_SWAPCHAIN_CREATE_PRESENT_WAIT_2_BIT_KHR,
     eDeferredMemoryAllocation    = VK_SWAPCHAIN_CREATE_DEFERRED_MEMORY_ALLOCATION_BIT_KHR,
@@ -5559,7 +5603,8 @@ namespace VULKAN_HPP_NAMESPACE
     static VULKAN_HPP_CONST_OR_CONSTEXPR bool                    isBitmask = true;
     static VULKAN_HPP_CONST_OR_CONSTEXPR SwapchainCreateFlagsKHR allFlags =
       SwapchainCreateFlagBitsKHR::eSplitInstanceBindRegions | SwapchainCreateFlagBitsKHR::eProtected | SwapchainCreateFlagBitsKHR::eMutableFormat |
-      SwapchainCreateFlagBitsKHR::ePresentId2 | SwapchainCreateFlagBitsKHR::ePresentWait2 | SwapchainCreateFlagBitsKHR::eDeferredMemoryAllocation;
+      SwapchainCreateFlagBitsKHR::ePresentTimingEXT | SwapchainCreateFlagBitsKHR::ePresentId2 | SwapchainCreateFlagBitsKHR::ePresentWait2 |
+      SwapchainCreateFlagBitsKHR::eDeferredMemoryAllocation;
   };
 
   // wrapper class for enum VkDeviceGroupPresentModeFlagBitsKHR, see
@@ -7180,6 +7225,70 @@ namespace VULKAN_HPP_NAMESPACE
     eDefault    = VK_MEMORY_OVERALLOCATION_BEHAVIOR_DEFAULT_AMD,
     eAllowed    = VK_MEMORY_OVERALLOCATION_BEHAVIOR_ALLOWED_AMD,
     eDisallowed = VK_MEMORY_OVERALLOCATION_BEHAVIOR_DISALLOWED_AMD
+  };
+
+  //=== VK_EXT_present_timing ===
+
+  // wrapper class for enum VkPresentStageFlagBitsEXT, see https://registry.khronos.org/vulkan/specs/latest/man/html/VkPresentStageFlagBitsEXT.html
+  enum class PresentStageFlagBitsEXT : VkPresentStageFlagsEXT
+  {
+    eQueueOperationsEnd     = VK_PRESENT_STAGE_QUEUE_OPERATIONS_END_BIT_EXT,
+    eRequestDequeued        = VK_PRESENT_STAGE_REQUEST_DEQUEUED_BIT_EXT,
+    eImageFirstPixelOut     = VK_PRESENT_STAGE_IMAGE_FIRST_PIXEL_OUT_BIT_EXT,
+    eImageFirstPixelVisible = VK_PRESENT_STAGE_IMAGE_FIRST_PIXEL_VISIBLE_BIT_EXT
+  };
+
+  // wrapper using for bitmask VkPresentStageFlagsEXT, see https://registry.khronos.org/vulkan/specs/latest/man/html/VkPresentStageFlagsEXT.html
+  using PresentStageFlagsEXT = Flags<PresentStageFlagBitsEXT>;
+
+  template <>
+  struct FlagTraits<PresentStageFlagBitsEXT>
+  {
+    using WrappedType                                                   = VkPresentStageFlagBitsEXT;
+    static VULKAN_HPP_CONST_OR_CONSTEXPR bool                 isBitmask = true;
+    static VULKAN_HPP_CONST_OR_CONSTEXPR PresentStageFlagsEXT allFlags =
+      PresentStageFlagBitsEXT::eQueueOperationsEnd | PresentStageFlagBitsEXT::eRequestDequeued | PresentStageFlagBitsEXT::eImageFirstPixelOut |
+      PresentStageFlagBitsEXT::eImageFirstPixelVisible;
+  };
+
+  // wrapper class for enum VkPresentTimingInfoFlagBitsEXT, see https://registry.khronos.org/vulkan/specs/latest/man/html/VkPresentTimingInfoFlagBitsEXT.html
+  enum class PresentTimingInfoFlagBitsEXT : VkPresentTimingInfoFlagsEXT
+  {
+    ePresentAtRelativeTime        = VK_PRESENT_TIMING_INFO_PRESENT_AT_RELATIVE_TIME_BIT_EXT,
+    ePresentAtNearestRefreshCycle = VK_PRESENT_TIMING_INFO_PRESENT_AT_NEAREST_REFRESH_CYCLE_BIT_EXT
+  };
+
+  // wrapper using for bitmask VkPresentTimingInfoFlagsEXT, see https://registry.khronos.org/vulkan/specs/latest/man/html/VkPresentTimingInfoFlagsEXT.html
+  using PresentTimingInfoFlagsEXT = Flags<PresentTimingInfoFlagBitsEXT>;
+
+  template <>
+  struct FlagTraits<PresentTimingInfoFlagBitsEXT>
+  {
+    using WrappedType                                                        = VkPresentTimingInfoFlagBitsEXT;
+    static VULKAN_HPP_CONST_OR_CONSTEXPR bool                      isBitmask = true;
+    static VULKAN_HPP_CONST_OR_CONSTEXPR PresentTimingInfoFlagsEXT allFlags =
+      PresentTimingInfoFlagBitsEXT::ePresentAtRelativeTime | PresentTimingInfoFlagBitsEXT::ePresentAtNearestRefreshCycle;
+  };
+
+  // wrapper class for enum VkPastPresentationTimingFlagBitsEXT, see
+  // https://registry.khronos.org/vulkan/specs/latest/man/html/VkPastPresentationTimingFlagBitsEXT.html
+  enum class PastPresentationTimingFlagBitsEXT : VkPastPresentationTimingFlagsEXT
+  {
+    eAllowPartialResults    = VK_PAST_PRESENTATION_TIMING_ALLOW_PARTIAL_RESULTS_BIT_EXT,
+    eAllowOutOfOrderResults = VK_PAST_PRESENTATION_TIMING_ALLOW_OUT_OF_ORDER_RESULTS_BIT_EXT
+  };
+
+  // wrapper using for bitmask VkPastPresentationTimingFlagsEXT, see
+  // https://registry.khronos.org/vulkan/specs/latest/man/html/VkPastPresentationTimingFlagsEXT.html
+  using PastPresentationTimingFlagsEXT = Flags<PastPresentationTimingFlagBitsEXT>;
+
+  template <>
+  struct FlagTraits<PastPresentationTimingFlagBitsEXT>
+  {
+    using WrappedType                                                             = VkPastPresentationTimingFlagBitsEXT;
+    static VULKAN_HPP_CONST_OR_CONSTEXPR bool                           isBitmask = true;
+    static VULKAN_HPP_CONST_OR_CONSTEXPR PastPresentationTimingFlagsEXT allFlags =
+      PastPresentationTimingFlagBitsEXT::eAllowPartialResults | PastPresentationTimingFlagBitsEXT::eAllowOutOfOrderResults;
   };
 
   //=== VK_INTEL_performance_query ===
@@ -8976,7 +9085,9 @@ namespace VULKAN_HPP_NAMESPACE
     eDevice                  = VK_TIME_DOMAIN_DEVICE_KHR,
     eClockMonotonic          = VK_TIME_DOMAIN_CLOCK_MONOTONIC_KHR,
     eClockMonotonicRaw       = VK_TIME_DOMAIN_CLOCK_MONOTONIC_RAW_KHR,
-    eQueryPerformanceCounter = VK_TIME_DOMAIN_QUERY_PERFORMANCE_COUNTER_KHR
+    eQueryPerformanceCounter = VK_TIME_DOMAIN_QUERY_PERFORMANCE_COUNTER_KHR,
+    ePresentStageLocalEXT    = VK_TIME_DOMAIN_PRESENT_STAGE_LOCAL_EXT,
+    eSwapchainLocalEXT       = VK_TIME_DOMAIN_SWAPCHAIN_LOCAL_EXT
   };
 
   using TimeDomainEXT = TimeDomainKHR;
@@ -9382,28 +9493,6 @@ namespace VULKAN_HPP_NAMESPACE
   {
     static VULKAN_HPP_CONST_OR_CONSTEXPR bool                   isBitmask = true;
     static VULKAN_HPP_CONST_OR_CONSTEXPR SurfaceCreateFlagsOHOS allFlags  = {};
-  };
-#endif /*VK_USE_PLATFORM_OHOS*/
-
-#if defined( VK_USE_PLATFORM_OHOS )
-  //=== VK_OHOS_native_buffer ===
-
-  // wrapper class for enum VkSwapchainImageUsageFlagBitsOHOS, see
-  // https://registry.khronos.org/vulkan/specs/latest/man/html/VkSwapchainImageUsageFlagBitsOHOS.html
-  enum class SwapchainImageUsageFlagBitsOHOS : VkSwapchainImageUsageFlagsOHOS
-  {
-    eShared = VK_SWAPCHAIN_IMAGE_USAGE_SHARED_BIT_OHOS
-  };
-
-  // wrapper using for bitmask VkSwapchainImageUsageFlagsOHOS, see https://registry.khronos.org/vulkan/specs/latest/man/html/VkSwapchainImageUsageFlagsOHOS.html
-  using SwapchainImageUsageFlagsOHOS = Flags<SwapchainImageUsageFlagBitsOHOS>;
-
-  template <>
-  struct FlagTraits<SwapchainImageUsageFlagBitsOHOS>
-  {
-    using WrappedType                                                           = VkSwapchainImageUsageFlagBitsOHOS;
-    static VULKAN_HPP_CONST_OR_CONSTEXPR bool                         isBitmask = true;
-    static VULKAN_HPP_CONST_OR_CONSTEXPR SwapchainImageUsageFlagsOHOS allFlags  = SwapchainImageUsageFlagBitsOHOS::eShared;
   };
 #endif /*VK_USE_PLATFORM_OHOS*/
 

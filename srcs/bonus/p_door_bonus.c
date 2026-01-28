@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   p_door_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 20:46:43 by salabbe           #+#    #+#             */
+/*   Updated: 2026/01/22 20:47:24 by bcausseq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d_bonus.h"
 
 static char	*set_data(char *line)
@@ -7,14 +19,15 @@ static char	*set_data(char *line)
 	i = 0;
 	while (ft_isspace(line[i]))
 		i++;
-	if ((line[i] == 'D' || line[i] == 'F' || line[i] == 'C') && (ft_strlen(line) > 3))
+	if ((line[i] == 'D' || line[i] == 'F' || line[i] == 'C')
+		&& (ft_strlen(line) > 3))
 		return (ft_substr(line, i + 2, ft_strlen(line)));
 	else if (line[i] == '.' && line[i + 1] == '/')
 		return (ft_substr(line, i + 2, ft_strlen(line)));
 	return (NULL);
 }
 
-int		check_door(t_texture *texture)
+int	check_door(t_texture *texture)
 {
 	if (!texture->door.path)
 		return (0);
@@ -46,7 +59,7 @@ static int	setter_data(t_game *game, int i, int j, char *sub)
 	return (0);
 }
 
-int set_data_all(t_game *game, int i, int j)
+int	set_data_all(t_game *game, int i, int j)
 {
 	char	*sub;
 

@@ -6,7 +6,7 @@
 /*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 00:20:28 by bcausseq          #+#    #+#             */
-/*   Updated: 2026/01/15 18:22:26 by bcausseq         ###   ########.fr       */
+/*   Updated: 2026/01/22 17:19:42 by bcausseq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	cross_pad(t_game *game, float *move_x, float *move_y)
 
 t_boolean	collides(char **data_map, int type, float y_pos, float x_pos)
 {
-	if (type && NEW_BOTH)
+	if (type & NEW_BOTH)
 	{
 		if (data_map[(int)(y_pos + THICKNESS)][(int)(x_pos + THICKNESS)] == '1'
 			|| data_map[(int)(y_pos - THICKNESS)][(int)(x_pos - THICKNESS)]

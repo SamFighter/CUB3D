@@ -6,7 +6,7 @@
 /*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 20:20:54 by bcausseq          #+#    #+#             */
-/*   Updated: 2026/01/15 18:14:55 by bcausseq         ###   ########.fr       */
+/*   Updated: 2026/01/22 18:11:12 by bcausseq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 # define THICKNESS 0.25f
 # define NEW_X 0b01
 # define NEW_Y 0b10
-# define NEW_BOTH NEW_X | NEW_Y
 
 typedef char	t_boolean;
 
