@@ -44,6 +44,10 @@
 # define HIT_WALL 1
 # define HIT_DOOR 2
 
+#define TILE_SIZE 16
+#define MM_RADIUS 2
+#define MM_SIZE (MM_RADIUS * 2 + 1)
+
 typedef char	t_boolean;
 
 typedef enum e_state_game
@@ -117,6 +121,8 @@ typedef struct s_map
 	int		height;
 	int		width;
 	char	spawn;
+	int		pos_door_x;
+	int		pos_door_y;
 }	t_map;
 
 typedef struct s_ctrl
@@ -193,6 +199,26 @@ typedef struct s_menu
 	int			nb_buttons;
 	int			index_select;
 }	t_menu;
+
+
+typedef struct s_minimap
+{
+	char		**map;
+	int			map_w;
+	int			map_h;
+	mlx_image	floor;
+	mlx_image	wall;
+	mlx_image	door;
+	mlx_image	player;
+	mlx_context	mlx;
+	mlx_window	win;
+}	t_minimap;
+
+typedef struct	s_vec2i
+{
+	int		x;
+	int		y;
+}	t_vec2i;
 
 void
 draw_floor(t_game *game, int x, mlx_color *colors);
@@ -295,6 +321,7 @@ int				check_door(t_texture *texture);
 int				set_data_all(t_game *game, int i, int j);
 void			dda_step(t_ray *ray);
 int				is_hit(t_game *game, t_ray *ray);
+void				open_door(t_game *game, t_map *map, t_ray *ray);
 
 
 

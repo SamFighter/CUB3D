@@ -62,3 +62,41 @@ void	draw_wall(t_game *game, t_ray *ray, int x, mlx_color *colors)
 		&& game->cur_text.y < HEIGHT)
 		wall_draw(game, x, colors);
 }
+
+static int		door_detector(t_game *game, t_ray *ray)
+{
+	if (game->map.data_map[ray->map_y][ray->map_x + 1] == 'D')
+	{
+		game->map.pos_door_x = ray->map_x + 1;
+		game->map.pos_door_y = ray->map_y;
+		return (1);
+	}
+	else if (game->map.data_map[ray->map_y][ray->map_x - 1] == 'D')
+	{
+		game->map.pos_door_x = ray->map_x - 1;
+		game->map.pos_door_y = ray->map_y;
+		return (1);
+	}
+	else if (game->map.data_map[ray->map_y + 1][ray->map_x] == 'D')
+	{
+		game->map.pos_door_y = ray->map_y + 1;
+		game->map.pos_door_x = ray->map_x;
+		return (1);
+	}
+	else if (game->map.data_map[ray->map_y - 1][ray->map_x] == 'D')
+	{
+		game->map.pos_door_y = ray->map_y - 1;
+		game->map.pos_door_x = ray->map_x;
+		return (1);
+	}
+	else
+		return (0);
+}
+
+void		open_door(t_game *game, t_map *map, t_ray *ray)
+{
+	if (door_detector(game, ray) == 1)
+		map->data_map[map->pos_door_y][map->pos_door_x] = '0';
+	else
+		map->data_map[map->pos_door_y][map->pos_door_x] = 'D';
+}

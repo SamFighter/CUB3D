@@ -102,6 +102,7 @@ void	cast_rays(void *param)
 	while (x < WIDTH)
 	{
 		init_ray(game, &ray, x);
+		open_door(game, &game->map, &ray);
 		dda_algorithm(game, &ray);
 		calc_wall_distance(game, &ray);
 		draw_wall(game, &ray, x, game->mlx_ctx.buf);
