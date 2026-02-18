@@ -28,6 +28,12 @@ get_player(t_map *map, t_player *player);
 char
 **dup_map(void);
 
+void
+init_colors(t_game *game);
+
+void
+init_textures(t_game *game);
+
 char
 **get_map(int fd, int *width, t_game *game);
 

@@ -6,7 +6,7 @@
 /*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:03:20 by bcausseq          #+#    #+#             */
-/*   Updated: 2026/02/17 20:32:15 by bcausseq         ###   ########.fr       */
+/*   Updated: 2026/02/18 14:41:20 by bcausseq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "controls.h"
 # include "game.h"
 
-typedef struct s_game t_game;
+typedef struct s_game	t_game;
 
 typedef enum e_state_game
 {
@@ -62,7 +62,6 @@ typedef struct s_buttons
 	mlx_color	hover;
 	void		(*action)(t_game *game);
 }	t_buttons;
-
 
 typedef struct s_game
 {

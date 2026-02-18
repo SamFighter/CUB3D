@@ -6,7 +6,7 @@
 /*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:32:59 by bcausseq          #+#    #+#             */
-/*   Updated: 2026/02/18 00:57:14 by bcausseq         ###   ########.fr       */
+/*   Updated: 2026/02/18 14:38:05 by bcausseq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 # define HIT_WALL 1
 
 # include "../third_parties/libft/includes/libft.h"
-# include <SDL2/SDL_scancode.h>
+# include "SDL2/SDL_scancode.h"
 
-typedef char	t_boolean;
-typedef struct s_game t_game;
+typedef struct s_game	t_game;
+typedef char			t_boolean;
 
 typedef struct s_map
 {
@@ -56,5 +56,11 @@ skip_blank(char **map, int *start);
 
 int
 count_lines(char **tab);
+
+// int
+// compare_char(char *str);
+// 
+// int
+// map_closed(char **map, char *str, int x, int y);
 
 #endif

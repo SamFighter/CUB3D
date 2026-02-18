@@ -6,7 +6,7 @@
 /*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:07:06 by bcausseq          #+#    #+#             */
-/*   Updated: 2026/02/17 20:32:14 by bcausseq         ###   ########.fr       */
+/*   Updated: 2026/02/18 14:41:30 by bcausseq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "utils.h"
 
-typedef struct s_game t_game;
+typedef struct s_game	t_game;
 
 typedef struct s_ctrl_ind
 {

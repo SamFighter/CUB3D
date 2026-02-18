@@ -6,7 +6,7 @@
 /*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:31:23 by bcausseq          #+#    #+#             */
-/*   Updated: 2026/02/18 00:20:13 by bcausseq         ###   ########.fr       */
+/*   Updated: 2026/02/18 14:38:22 by bcausseq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # include "../third_parties/MLX/includes/mlx_extended.h"
 # include "utils.h"
 
-typedef struct s_game t_game;
-typedef struct s_map t_map;
-typedef struct s_colors t_colors;
+typedef struct s_game	t_game;
+typedef struct s_map	t_map;
+typedef struct s_colors	t_colors;
 
 typedef struct s_ray
 {

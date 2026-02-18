@@ -6,10 +6,10 @@
 /*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:49:15 by bcausseq          #+#    #+#             */
-/*   Updated: 2026/02/18 00:31:08 by bcausseq         ###   ########.fr       */
+/*   Updated: 2026/02/18 14:40:28 by bcausseq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
- 
+
 #ifndef WINDOW_H
 # define WINDOW_H
 
@@ -19,7 +19,7 @@
 # include "../third_parties/MLX/includes/mlx.h"
 # include "utils.h"
 
-typedef struct s_game t_game;
+typedef struct s_game	t_game;
 
 typedef struct s_mlx
 {
