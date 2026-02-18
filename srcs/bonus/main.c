@@ -16,7 +16,7 @@
 
 static int	init_all(t_game *game)
 {
-	if (init_data(game) == 1)
+	if (init_data_bonus(game) == 1)
 		return (1);
 	return (0);
 }

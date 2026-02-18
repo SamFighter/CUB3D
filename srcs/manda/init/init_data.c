@@ -12,11 +12,7 @@
 
 // #include "cub3d.h"
 
-#ifndef BONUS
 # include "manda.h"
-#else
-# include "bonus.h"
-#endif
 
 int	init_data(t_game *game)
 {

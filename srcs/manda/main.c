@@ -40,8 +40,6 @@ void	free_data_texture(t_colors *colors, t_texture *textures)
 
 static int	init_all(t_game *game)
 {
-	init_colors(game);
-	init_textures(game);
 	if (init_data(game) == 1)
 		return (1);
 	return (0);

@@ -35,4 +35,7 @@ typedef struct s_game
 void
 clear_buffers(t_texture texture);
 
+int
+init_data(t_game *game);
+
 #endif

@@ -192,4 +192,9 @@ is_hit(t_game *game, t_ray *ray);
 void
 open_door(t_game *game, t_map *map, t_ray *ray);
 
+int
+init_data_bonus(t_game *game);
+
+char	**get_map_bonus(int fd, int *width, t_game *game);
+
 #endif

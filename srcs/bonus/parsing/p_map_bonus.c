@@ -14,7 +14,7 @@
 
 #include "utils.h"
 
-char	**get_map(int fd, int *width, t_game *game)
+char	**get_map_bonus(int fd, int *width, t_game *game)
 {
 	char	**map;
 	char	*line;
