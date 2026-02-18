@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_door_bonus.c                                     :+:      :+:    :+:   */
+/*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/22 20:46:43 by salabbe           #+#    #+#             */
-/*   Updated: 2026/02/17 19:34:41 by bcausseq         ###   ########.fr       */
+/*   Created: 2025/12/13 19:02:35 by salabbe           #+#    #+#             */
+/*   Updated: 2026/02/18 01:21:51 by bcausseq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d_bonus.h"
+// #include "cub3d.h"
 
-#include "bonus.h"
+#include "manda.h"
 
 static char	*set_data(char *line)
 {
@@ -21,23 +21,20 @@ static char	*set_data(char *line)
 	i = 0;
 	while (ft_isspace(line[i]))
 		i++;
-	if ((line[i] == 'D' || line[i] == 'F' || line[i] == 'C')
-		&& (ft_strlen(line) > 3))
+	if ((line[i] == 'C' || line[i] == 'F') && (ft_strlen(line) > 3))
 		return (ft_substr(line, i + 2, ft_strlen(line)));
 	else if (line[i] == '.' && line[i + 1] == '/')
 		return (ft_substr(line, i + 2, ft_strlen(line)));
 	return (NULL);
 }
 
-int	check_door(t_texture *texture)
+static int	set_data_map(t_game *game, int i, int j)
 {
-	if (!texture->door.path)
-		return (0);
-	return (1);
-}
+	char	*sub;
 
-static int	setter_data(t_game *game, int i, int j, char *sub)
-{
+	sub = ft_substr(game->map.map[j], i, ft_strlchr(&game->map.map[j][i], ' '));
+	if (!sub)
+		return (1);
 	if (game->texture.no.path == NULL && ft_strncmp(sub, "NO", 3) == 0)
 		game->texture.no.path = set_data(&game->map.map[j][i + 2]);
 	else if (game->texture.so.path == NULL && ft_strncmp(sub, "SO", 3) == 0)
@@ -46,8 +43,6 @@ static int	setter_data(t_game *game, int i, int j, char *sub)
 		game->texture.we.path = set_data(&game->map.map[j][i + 2]);
 	else if (game->texture.ea.path == NULL && ft_strncmp(sub, "EA", 3) == 0)
 		game->texture.ea.path = set_data(&game->map.map[j][i + 2]);
-	else if (game->texture.door.path == NULL && ft_strncmp(sub, "D", 2) == 0)
-		game->texture.door.path = set_data(&game->map.map[j][i]);
 	else if (game->colors.c_floor == NULL && ft_strncmp(sub, "F", 2) == 0)
 		game->colors.c_floor = set_data(&game->map.map[j][i]);
 	else if (game->colors.c_ceiling == NULL && ft_strncmp(sub, "C", 2) == 0)
@@ -58,17 +53,47 @@ static int	setter_data(t_game *game, int i, int j, char *sub)
 		free_data_texture(&game->colors, &game->texture);
 		error(MAP, NULL, game);
 	}
+	free(sub);
 	return (0);
 }
 
-int	set_data_all(t_game *game, int i, int j)
+static int	verify_data(t_game *game, int j)
 {
-	char	*sub;
+	game->map.data_map = get_data_map(game->map.map, j, &(game->map.height));
+	if (game->map.data_map == NULL)
+	{
+		free_data_texture(&game->colors, &game->texture);
+		error(MAP, NULL, game);
+	}
+	get_player(&(game->map), &(game->player));
+	if (parse_colors(&game->colors) == 1)
+	{
+		utl_super_free((void **)game->map.data_map);
+		free_data_texture(&game->colors, &game->texture);
+		error(COLORS, NULL, game);
+	}
+	else
+		return (0);
+	return (1);
+}
 
-	sub = ft_substr(game->map.map[j], i, ft_strlchr(&game->map.map[j][i], ' '));
-	if (!sub)
+int	define_data_map(t_game *game)
+{
+	int		i;
+	int		j;
+
+	j = 0;
+	while ((game->map.map[j] && check_textures(&game->texture) == 0)
+		|| check_colors(&game->colors) == 0)
+	{
+		i = 0;
+		while (ft_isspace(game->map.map[j][i]))
+			i++;
+		if (set_data_map(game, i, j) == 1)
+			return (1);
+		j++;
+	}
+	if (verify_data(game, j) == 1)
 		return (1);
-	setter_data(game, i, j, sub);
-	free(sub);
 	return (0);
 }

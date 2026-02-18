@@ -6,11 +6,13 @@
 /*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 00:25:45 by bcausseq          #+#    #+#             */
-/*   Updated: 2026/01/24 20:50:24 by bcausseq         ###   ########.fr       */
+/*   Updated: 2026/02/17 19:30:26 by bcausseq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+// #include "cub3d_bonus.h"
+
+#include "bonus.h"
 
 void	calc_wall_distance(t_game *game, t_ray *ray)
 {
@@ -21,7 +23,6 @@ void	calc_wall_distance(t_game *game, t_ray *ray)
 		ray->perp_wall_dist = (ray->map_y - game->player.pos_y
 				+ (1 - ray->step_y) / 2) / ray->dir_y;
 }
-
 
 void	dda_algorithm(t_game *game, t_ray *ray)
 {
@@ -90,7 +91,7 @@ void	cast_rays(void *param)
 	t_ray		ray;
 	int			x;
 
-	x = 0;
+	x = -1;
 	game = (t_game *)param;
 	if (game->curr_state != NORMAL_STATE)
 		return ;
@@ -99,14 +100,13 @@ void	cast_rays(void *param)
 		(mlx_color){.rgba = 0x000000FF});
 	draw_bg(game);
 	move(game);
-	while (x < WIDTH)
+	while (++x < WIDTH)
 	{
 		init_ray(game, &ray, x);
 		open_door(game, &game->map, &ray);
 		dda_algorithm(game, &ray);
 		calc_wall_distance(game, &ray);
 		draw_wall(game, &ray, x, game->mlx_ctx.buf);
-		x++;
 	}
 	mlx_set_image_region(game->mlx_ctx.mlx_ctx, game->mlx_ctx.img,
 		0, 0, WIDTH, HEIGHT, game->mlx_ctx.buf);

@@ -6,11 +6,13 @@
 /*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 00:20:28 by bcausseq          #+#    #+#             */
-/*   Updated: 2026/01/22 17:19:42 by bcausseq         ###   ########.fr       */
+/*   Updated: 2026/02/17 20:01:25 by bcausseq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+// #include "cub3d.h"
+
+#include "manda.h"
 
 void	rotate(t_game *game)
 {
@@ -21,9 +23,9 @@ void	rotate(t_game *game)
 	angle = 0.0f;
 	old_dir_x = 0.0f;
 	old_cam_x = 0.0f;
-	if (game->ctrl.l)
+	if (game->ctrl.game.l.on)
 		angle = -ROT_SPEED;
-	if (game->ctrl.r)
+	if (game->ctrl.game.r.on)
 		angle = ROT_SPEED;
 	old_dir_x = game->player.dir_x;
 	old_cam_x = game->player.cam_x;
@@ -39,22 +41,22 @@ void	rotate(t_game *game)
 
 void	cross_pad(t_game *game, float *move_x, float *move_y)
 {
-	if (game->ctrl.w)
+	if (game->ctrl.game.w.on)
 	{
 		(*move_x) += game->player.dir_x * MOV_SPEED;
 		(*move_y) += game->player.dir_y * MOV_SPEED;
 	}
-	if (game->ctrl.s)
+	if (game->ctrl.game.s.on)
 	{
 		(*move_x) -= game->player.dir_x * MOV_SPEED;
 		(*move_y) -= game->player.dir_y * MOV_SPEED;
 	}
-	if (game->ctrl.d)
+	if (game->ctrl.game.d.on)
 	{
 		(*move_x) += game->player.cam_x * MOV_SPEED;
 		(*move_y) += game->player.cam_y * MOV_SPEED;
 	}
-	if (game->ctrl.a)
+	if (game->ctrl.game.a.on)
 	{
 		(*move_x) -= game->player.cam_x * MOV_SPEED;
 		(*move_y) -= game->player.cam_y * MOV_SPEED;
@@ -63,7 +65,7 @@ void	cross_pad(t_game *game, float *move_x, float *move_y)
 
 t_boolean	collides(char **data_map, int type, float y_pos, float x_pos)
 {
-	if (type & NEW_BOTH)
+	if (type & NEW_X && (type & NEW_Y))
 	{
 		if (data_map[(int)(y_pos + THICKNESS)][(int)(x_pos + THICKNESS)] == '1'
 			|| data_map[(int)(y_pos - THICKNESS)][(int)(x_pos - THICKNESS)]
@@ -104,7 +106,7 @@ void	border_check(t_game *game, float new_x, float new_y)
 	if (new_x >= 0 && new_x < game->map.width
 		&& new_y >= 0 && new_y < game->map.height)
 	{
-		if (!collides(game->map.data_map, NEW_BOTH, new_y, new_x))
+		if (!collides(game->map.data_map, (NEW_X | NEW_Y), new_y, new_x))
 		{
 			game->player.pos_x = new_x;
 			game->player.pos_y = new_y;

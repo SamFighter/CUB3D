@@ -1,18 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_map_bonus.c                                      :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcausseq <bcausseq@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 21:05:17 by salabbe           #+#    #+#             */
-/*   Updated: 2026/02/18 12:54:11 by bcausseq         ###   ########.fr       */
+/*   Updated: 2026/02/18 02:06:35 by bcausseq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d_bonus.h"
+// #include "cub3d.h"
 
 #include "utils.h"
+
+static int	compare_char(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != '1' && str[i] != '0' && str[i] != ' ' && str[i] != 'N'
+			  && str[i] != 'S' && str[i] != 'W' && str[i] != 'E')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static int	map_closed(char **map, char *str, int x, int y)
+{
+	while (str[x])
+	{
+		if (ischarset("0NSWE", str[x]) == 1)
+		{
+			if (!map[y + 1] || x > (int)ft_strlen(map[y + 1])
+				  || ischarset("10NSWE", map[y + 1][x]) == 0)
+				return (1);
+			if (!map[y - 1] || x > (int)ft_strlen(map[y - 1])
+				  || ischarset("10NSWE", map[y - 1][x]) == 0)
+				return (1);
+			if (!map[y][x + 1] || ischarset("10NSWE", map[y][x + 1]) == 0)
+				return (1);
+			if (!map[y][x - 1] || ischarset("10NSWE", map[y][x - 1]) == 0)
+				return (1);
+		}
+		x++;
+	}
+	return (0);
+}
 
 char	**get_map(int fd, int *width, t_game *game)
 {
@@ -39,43 +76,6 @@ char	**get_map(int fd, int *width, t_game *game)
 	free(line);
 	free(tmp);
 	return (map);
-}
-
-static int	compare_char(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] != '1' && str[i] != '0' && str[i] != ' ' && str[i] != 'N'
-			&& str[i] != 'S' && str[i] != 'W' && str[i] != 'E' && str[i] != 'D')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-static int	map_closed(char **map, char *str, int x, int y)
-{
-	while (str[x])
-	{
-		if (ischarset("0NSWED", str[x]) == 1)
-		{
-			if (!map[y + 1] || x > (int)ft_strlen(map[y + 1])
-				|| ischarset("10NSWED", map[y + 1][x]) == 0)
-				return (1);
-			if (!map[y - 1] || x > (int)ft_strlen(map[y - 1])
-				|| ischarset("10NSWED", map[y - 1][x]) == 0)
-				return (1);
-			if (!map[y][x + 1] || ischarset("10NSWED", map[y][x + 1]) == 0)
-				return (1);
-			if (!map[y][x - 1] || ischarset("10NSWED", map[y][x - 1]) == 0)
-				return (1);
-		}
-		x++;
-	}
-	return (0);
 }
 
 static int	parse_map_content(char **map, int j)
