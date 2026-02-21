@@ -4,19 +4,19 @@
 
 ## Overview
 
-**cub3D** is a 3D graphics project developed at the 42 School.  
+**cub3D** is a 3D graphics project developed at the 42 School. 
 The objective is to implement a basic 3D rendering engine using the **raycasting** technique, inspired by early first-person games such as Wolfenstein 3D.
 
-The program takes a 2D map as input and renders a first-person perspective view in real time.  
+The program takes a 2D map as input and renders a first-person perspective view in real time.
 It simulates depth, wall textures, and player movement using mathematical calculations rather than a true 3D engine.
 
 This project focuses on:
 
-- Understanding raycasting and projection principles  
-- Implementing a rendering pipeline in C  
-- Managing textures and colors  
-- Handling user input and real-time events  
-- Ensuring robust parsing and memory management  
+- Understanding raycasting and projection principles
+- Implementing a rendering pipeline in C
+- Managing textures and colors
+- Handling user input and real-time events
+- Ensuring robust parsing and memory management 
 
 ---
 
