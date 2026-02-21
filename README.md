@@ -24,13 +24,13 @@ This project focuses on:
 
 The main objectives of cub3D are:
 
-- Parse and validate a `.cub` configuration file  
-- Render textured walls depending on orientation (North, South, East, West)  
-- Display customizable floor and ceiling colors  
-- Implement smooth player movement and camera rotation  
-- Detect and prevent wall collisions  
-- Manage graphical window events properly  
-- Maintain clean and leak-free memory management  
+- Parse and validate a `.cub` configuration file 
+- Render textured walls depending on orientation (North, South, East, West)
+- Display customizable floor and ceiling colors
+- Implement smooth player movement and camera rotation
+- Detect and prevent wall collisions
+- Manage graphical window events properly
+- Maintain clean and leak-free memory management
 
 ---
 
