@@ -61,8 +61,8 @@ $> make bonus
 ```
 
 This generates the executable:
-```./cub3D
-```
+``./cub3D
+``
 To use with ``*.cub`` maps
 
 ## Controls
