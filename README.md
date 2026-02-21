@@ -64,7 +64,9 @@ To compile the project:
 This generates the executable:
 ``./cub3D
 ``
-To use with ``*.cub`` maps
+or 
+``./cub3D_bonus
+to use with ``*.cub`` maps
 
 ## Controls
 **W** — Move forward
@@ -80,6 +82,11 @@ To use with ``*.cub`` maps
 **Right Arrow** — Rotate camera right
 
 **ESC** — Exit the program
+
+### Bonus part :
+**F1** — Menus and Settings
+
+**Mouse** is available.
 
 ## ``.cub`` File Structure
 
