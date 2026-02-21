@@ -97,9 +97,13 @@ A valid .cub file must contain:
 3. The map layout
 
 ``111111``
+
 ``100001``
+
 ``100N01``
+
 ``100001``
+
 ``111111``
 
 
