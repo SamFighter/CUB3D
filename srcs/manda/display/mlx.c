@@ -41,7 +41,7 @@ t_boolean	init_mlx(t_game *game)
 	game->mlx_ctx.mlx_ctx = mlx_init();
 	if (!(game->mlx_ctx.mlx_ctx))
 		return (FALSE);
-	game->mlx_ctx.win_infos.title = "El Cubo 3D";
+	game->mlx_ctx.win_infos.title = "Cub3D";
 	game->mlx_ctx.win_infos.height = HEIGHT;
 	game->mlx_ctx.win_infos.width = WIDTH;
 	game->mlx_ctx.win = mlx_new_window(game->mlx_ctx.mlx_ctx,

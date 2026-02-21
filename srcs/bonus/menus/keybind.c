@@ -17,7 +17,7 @@ void	key_bind(t_game *game)
 	game->curr_state = KEYBNG_GAME_STATE;
 }
 
-void	caca(t_game *game)
+void	game_state(t_game *game)
 {
 	game->curr_state = WAITING_GAME_STATE;
 }
@@ -26,7 +26,7 @@ void	init_p2(t_game *game, const char *name[11],
 		const int yx[2], const mlx_color shade[2])
 {
 	game->key_bind.buttons[9] = (t_buttons){(char *)name[9],
-		yx[0] * 4, yx[1] * 2, shade[0], shade[1], caca};
+		yx[0] * 4, yx[1] * 2, shade[0], shade[1], game_state};
 	game->key_bind.index_select = 0;
 }
 
@@ -49,7 +49,7 @@ void	init_keybinds(t_game *game)
 	while (j < 3)
 	{
 		game->key_bind.buttons[3 * j + i] = (t_buttons){(char *)name[3 * j + i],
-			yx[0] * (j + 1), yx[1] * (i + 1), shade[0], shade[1], caca};
+			yx[0] * (j + 1), yx[1] * (i + 1), shade[0], shade[1], game_state};
 		i++;
 		if (i == 3)
 			j++;

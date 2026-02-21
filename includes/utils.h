@@ -57,10 +57,4 @@ skip_blank(char **map, int *start);
 int
 count_lines(char **tab);
 
-// int
-// compare_char(char *str);
-// 
-// int
-// map_closed(char **map, char *str, int x, int y);
-
 #endif

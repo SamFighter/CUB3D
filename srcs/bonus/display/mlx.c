@@ -12,12 +12,12 @@
 
 #include "bonus.h"
 
-t_boolean	blablabla(t_game *game)
+static t_boolean	mlx_bonus(t_game *game)
 {
 	game->mlx_ctx.mlx_ctx = mlx_init();
 	if (!(game->mlx_ctx.mlx_ctx))
 		return (FALSE);
-	game->mlx_ctx.win_infos.title = "El Cubo 3D";
+	game->mlx_ctx.win_infos.title = "Cub3D_BONUS";
 	game->mlx_ctx.win_infos.height = HEIGHT;
 	game->mlx_ctx.win_infos.width = WIDTH;
 	game->mlx_ctx.win = mlx_new_window(game->mlx_ctx.mlx_ctx,
@@ -42,7 +42,7 @@ t_boolean	blablabla(t_game *game)
 
 t_boolean	init_mlx(t_game *game)
 {
-	if (!blablabla(game))
+	if (!mlx_bonus(game))
 		return (FALSE);
 	game->mlx_ctx.old_buf = ft_calloc(sizeof(mlx_color), HEIGHT * WIDTH);
 	if (!(game->mlx_ctx.old_buf))

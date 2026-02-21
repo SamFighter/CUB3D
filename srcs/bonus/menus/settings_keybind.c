@@ -12,7 +12,7 @@
 
 #include "bonus.h"
 
-void	pipi(t_game *game)
+static void	wait_state(t_game *game)
 {
 	game->curr_state = WAITING_SETT_STATE;
 }
@@ -36,7 +36,7 @@ void	sett_init_keybinds(t_game *game)
 	while (j < 3)
 	{
 		game->set_bind.buttons[2 * j + i] = (t_buttons){(char *)name[2 * j + i],
-			yx[0] * (j + 1), yx[1] * (i + 1), shade[0], shade[1], pipi};
+			yx[0] * (j + 1), yx[1] * (i + 1), shade[0], shade[1], wait_state};
 		i++;
 		if (i == 2)
 			j++;
