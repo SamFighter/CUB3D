@@ -65,7 +65,7 @@ This generates the executable:
 ``./cub3D
 ``
 or 
-``./cub3D_bonus
+``./cub3D_bonus``
 to use with ``*.cub`` maps
 
 ## Controls
