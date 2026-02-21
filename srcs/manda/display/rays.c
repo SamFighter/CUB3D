@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d.h"
-
 #include "manda.h"
 
 void	calc_wall_distance(t_game *game, t_ray *ray)

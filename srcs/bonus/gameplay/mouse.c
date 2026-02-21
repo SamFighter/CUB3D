@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d_bonus.h"
-
 #include "bonus.h"
 
 static t_boolean	init_mouse_pos(t_game *game, int c_x, int c_y)

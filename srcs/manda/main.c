@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d.h"
-
 #include "manda.h"
 
 void	free_data_texture(t_colors *colors, t_texture *textures)

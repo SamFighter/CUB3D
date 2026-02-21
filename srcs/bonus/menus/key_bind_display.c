@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d_bonus.h"
 #include "bonus.h"
 
 t_boolean	check_key_free(int key, t_game *game)

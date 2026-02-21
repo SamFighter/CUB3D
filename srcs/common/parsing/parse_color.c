@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d.h"
-
 #include "draw.h"
 
 static int	check_comma(char *str)

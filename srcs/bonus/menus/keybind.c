@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d_bonus.h"
-
 #include "bonus.h"
 
 void	key_bind(t_game *game)

@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d_bonus.h"
-
 #include "bonus.h"
 
 void	free_data_texture(t_colors *colors, t_texture *textures)

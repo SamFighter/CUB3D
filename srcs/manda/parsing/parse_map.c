@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d.h"
-
 #include "utils.h"
 
 static int	compare_char(char *str)

@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "cub3d_bonus.h"
-
 #include "window.h"
 
 void	ft_bufcpy(mlx_color *src, mlx_color *dest)

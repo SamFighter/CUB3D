@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d.h"
-
 #include "draw.h"
 
 void	get_player_data(t_map *map, t_player *player, int x, int y)

@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d_bonus.h"
-
 #include "utils.h"
 
 char	**get_map_bonus(int fd, int *width, t_game *game)

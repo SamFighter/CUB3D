@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d_bonus.h"
-
 #include "window.h"
 
 void	fifty_shade_of_grey(mlx_color *buf)

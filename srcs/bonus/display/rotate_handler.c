@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d_bonus.h"
 #include "bonus.h"
 
 void	rotate_player(t_game *game, float angle)

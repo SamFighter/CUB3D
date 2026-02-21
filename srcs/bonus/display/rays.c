@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d_bonus.h"
-
 #include "bonus.h"
 
 void	calc_wall_distance(t_game *game, t_ray *ray)

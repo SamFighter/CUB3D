@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d_bonus.h"
 #include "bonus.h"
 
 t_menu	*get_menu_addr(t_game *game)

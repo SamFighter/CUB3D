@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d.h"
-
 #include "manda.h"
 
 void	key_hooks_dwn(int key, void *param)

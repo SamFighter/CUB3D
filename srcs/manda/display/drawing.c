@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d.h"
-
 #include "manda.h"
 
 void	draw_floor(t_game *game, int x, mlx_color *colors)
