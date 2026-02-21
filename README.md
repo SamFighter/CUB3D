@@ -62,8 +62,7 @@ To compile the project:
 ```
 
 This generates the executable:
-``./cub3D
-``
+``./cub3D``
 or 
 ``./cub3D_bonus``
 to use with ``*.cub`` maps
