@@ -55,9 +55,10 @@ This creates a real-time pseudo-3D effect from a purely 2D map.
 To compile the project:
 
 ```bash
-$> make
-
-$> make bonus
+ make
+```
+```bash
+ make bonus
 ```
 
 This generates the executable:
